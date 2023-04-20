@@ -13,7 +13,8 @@
       "lastName": "userLastName",
       "password": "$2a$10$71MBBqwlPo.ePqIP1MA1qeJ5FXLFak8Z.tDLDp/iOPNLMR2ubYrna",
       "accounts": [
-        "USD:1000"
+        "USD:1000",
+        "CZK:999"
       ],
       "email": "user@mail.com"
     }
