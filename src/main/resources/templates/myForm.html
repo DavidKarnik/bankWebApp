@@ -58,16 +58,54 @@
 <!--    </div>-->
 <!--  </div>-->
 
-  <form th:action="@{/process-form}" method="post">
+<!--  <form>-->
+<!--    <h2>Functions:</h2>-->
+
+<!--    <div class="message-container" th:if="${show}">-->
+<!--      <div th:if="${success}" class="alert alert-success">-->
+<!--        <p th:text="${message}"></p>-->
+<!--      </div>-->
+<!--      <div th:if="${not success}" class="alert alert-danger">-->
+<!--        <p th:text="${message}"></p>-->
+<!--      </div>-->
+<!--    </div>-->
+
+
+
+<!--    <div>-->
+<!--      <label for="account-type">Account type:</label>-->
+<!--      <select id="account-type" name="accountType">-->
+<!--        <option value="USD">USD</option>-->
+<!--        <option value="CZK">CZK</option>-->
+<!--        <option value="GBN">GBN</option>-->
+<!--      </select>-->
+<!--    </div>-->
+
+<!--    <div>-->
+<!--      <label for="amount">Amount:</label>-->
+<!--      <input type="number" id="amount" name="amount">-->
+<!--    </div>-->
+
+<!--    <div class="buttons-container">-->
+<!--      <button th:action="@{/deposit}" type="submit" name="action" value="deposit">Deposit (+)</button>-->
+<!--      <button th:action="@{/payment}" type="submit" name="action" value="payment">Payment (-)</button>-->
+<!--      <button th:action="@{/open}" type="submit" name="action" value="open">Open account</button>-->
+<!--      <button th:action="@{/close}" type="submit" name="action" value="close">Close account</button>-->
+<!--    </div>-->
+
+<!--  </form>-->
+
+  <form method="post" th:action="@{/deposit}">
     <h2>Functions:</h2>
 
-    <div th:if="${success}" class="alert alert-success">
-      <p th:text="${message}"></p>
+    <div class="message-container" th:if="${show}">
+      <div th:if="${success}" class="alert alert-success">
+        <p th:text="${message}"></p>
+      </div>
+      <div th:if="not ${success}" class="alert alert-danger">
+        <p th:text="${message}"></p>
+      </div>
     </div>
-    <div th:if="${not success}" class="alert alert-danger">
-      <p th:text="${message}"></p>
-    </div>
-
 
     <div>
       <label for="account-type">Account type:</label>
@@ -84,14 +122,12 @@
     </div>
 
     <div class="buttons-container">
-      <button th:action="@{/deposit}" type="submit" name="action" value="deposit">Deposit (+)</button>
-      <button th:action="@{/payment}" type="submit" name="action" value="payment">Payment (-)</button>
-      <button th:action="@{/open}" type="submit" name="action" value="open">Open account</button>
-      <button th:action="@{/close}" type="submit" name="action" value="close">Close account</button>
+      <button type="submit" name="action" th:formaction="@{/deposit}">Deposit (+)</button>
+      <button type="submit" name="action" value="payment" formaction="/payment">Payment (-)</button>
+      <button type="submit" name="action" value="open" formaction="/open">Open account</button>
+      <button type="submit" name="action" value="close" formaction="/close">Close account</button>
     </div>
-
   </form>
-
 
 
   <!--  <div class="form-buttons-container">-->
