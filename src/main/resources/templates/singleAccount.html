@@ -9,14 +9,33 @@
           crossorigin="anonymous">
 </head>
 <body>
+
+<header>
+    <h1 class="bank-name">Bank Name</h1>
+    <div class="logoutSection">
+        <form th:action="@{/logout}" method="post">
+            <!--            <p>-->
+            <!--                Welcome <span th:text="${#authentication.getName()}"></span>-->
+            <!--            </p>-->
+            <input type="submit" value="Sign Out" />
+        </form>
+    </div>
+</header>
+
 <div class="container text-center">
     <div>
         <form th:action="@{/logout}" method="post">
-            <p>
-                Welcome <span th:text="${#authentication.getName()}"></span>
-            </p>
+                <p>
+                    Welcome
+                </p>
             <input type="submit" value="Sign Out" />
         </form>
+    </div>
+    <div>
+        <p>
+            <h2>Hello </h2>
+            <span th:text="${user.firstName} + ${user.lastName}"></span>
+        </p>
     </div>
     <div>
         <h1>List of ONE User !!!</h1>
@@ -47,4 +66,27 @@
     </div>
 </div>
 </body>
+
+<style>
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #003366;
+        color: #ffffff;
+        padding: 20px;
+    }
+    body {
+        margin: 0;
+    }
+    .bank-name {
+        font-size: 36px;
+        margin: 0;
+    }
+
+    .logoutSection {
+        text-align: right;
+    }
+</style>
+
 </html>

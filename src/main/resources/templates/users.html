@@ -9,41 +9,170 @@
           crossorigin="anonymous">
 </head>
 <body>
-    <div class="container text-center">
-        <div>
-            <form th:action="@{/logout}" method="post">
-                <p>
-                    Welcome <span th:text="${#authentication.getName()}"></span>
-                </p>
-                <input type="submit" value="Sign Out" />
-            </form>
+
+<header>
+    <h1 class="bank-name">Bank Name</h1>
+    <div class="logoutSection">
+        <form th:action="@{/logout}" method="post">
+<!--            <p>-->
+<!--                Welcome <span th:text="${#authentication.getName()}"></span>-->
+<!--            </p>-->
+            <input type="submit" value="Sign Out" />
+        </form>
+    </div>
+</header>
+
+<div class="mainContent">
+    <div class="info-container">
+        <h3 th:text="${user.firstName} + ' ' + ${user.lastName}">Name Surname</h3>
+
+        <div class="infoColumns">
+            <div class="leftCol">
+                <p>Account number:</p>
+                <p>E-mail:</p>
+            </div>
+            <div class="rightCol">
+                <p th:text="'123456-789'">number</p>
+                <p th:text="${user.email}">email</p>
+            </div>
         </div>
+    </div>
+
+    <div class="mid-container">
+        <div class="left-accounts">
+            <h2>Open accounts:</h2>
+        </div>
+        <div class="right-exchange">
+            <h2>Exchange rate:</h2>
+        </div>
+    </div>
+
+    <div class="functions-container">
+        <h2>Functions:</h2>
+        <div>
+            <h3>Account type:</h3>
+            <h3>Amount:</h3>
+        </div>
+        <div class="buttons-container">
+            <button th:action="@{/deposit}" type="submit">Deposit (+)</button>
+            <button th:action="@{/payment}" type="submit">Payment (-)</button>
+            <button th:action="@{/open}" type="submit">Open account</button>
+            <button th:action="@{/close}" type="submit">Close account</button>
+        </div>
+    </div>
+
+    <div class="container text-center">
+        <!--        <div>-->
+        <!--            <form th:action="@{/logout}" method="post">-->
+        <!--                <p>-->
+        <!--                    Welcome <span th:text="${#authentication.getName()}"></span>-->
+        <!--                </p>-->
+        <!--                <input type="submit" value="Sign Out" />-->
+        <!--            </form>-->
+        <!--        </div>-->
         <div>
             <h1>List of All Users</h1>
         </div>
         <div>
             <table class="table table-striped table-bordered">
                 <thead class="thead-dark">
-                    <tr>
-<!--                        <th>User ID</th>-->
-                        <th>E-mail</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Accounts</th>
-                    </tr>
+                <tr>
+                    <!--                        <th>User ID</th>-->
+                    <th>E-mail</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Accounts</th>
+                </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="user: ${listUsers}">
-<!--                        <td th:text="${user.id}">User ID</td>-->
-                        <td th:text="${user.email}">E-mail</td>
-                        <td th:text="${user.firstName}">First Name</td>
-                        <td th:text="${user.lastName}">Last Name</td>
-                        <td th:text="${user.accounts}">Last Name</td>
-                    </tr>
+                <tr th:each="user: ${listUsers}">
+                    <!--                        <td th:text="${user.id}">User ID</td>-->
+                    <td th:text="${user.email}">E-mail</td>
+                    <td th:text="${user.firstName}">First Name</td>
+                    <td th:text="${user.lastName}">Last Name</td>
+                    <td th:text="${user.accounts}">Last Name</td>
+                </tr>
                 </tbody>
 
             </table>
         </div>
     </div>
+</div>
 </body>
+
+<style>
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #003366;
+        color: #ffffff;
+        padding: 20px;
+    }
+    body {
+        margin: 0;
+    }
+    .mainContent {
+        margin: 10px;
+    }
+    .bank-name {
+        font-size: 36px;
+        margin: 0;
+    }
+
+    .logoutSection {
+        text-align: right;
+    }
+
+    .infoColumns {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+    .leftCol {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .leftCol p {
+        margin-bottom: 0;
+    }
+    .rightCol {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    .rightCol p {
+        margin-bottom: 0;
+    }
+
+    .mid-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    .left-accounts {
+        display: flex;
+        flex-direction: column;
+    }
+    .right-exchange {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    .buttons-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, auto);
+        gap: 10px;
+    }
+    .buttons-container button {
+        padding: 10px;
+    }
+
+</style>
+
 </html>

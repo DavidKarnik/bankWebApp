@@ -1,0 +1,14 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #003366;
+    color: #ffffff;
+    padding: 20px;
+}
+body {
+    margin: 0;
+}
+.logoutSection {
+    text-align: right;
+}

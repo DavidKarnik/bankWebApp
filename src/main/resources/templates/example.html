@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+<head>
+  <title>Bank Page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <!-- Import any additional CSS or JavaScript files here -->
+  <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+<header>
+  <h1>Bank Name</h1>
+  <div class="logoutSection">
+    <form th:action="@{/logout}" method="post">
+      <p>
+        Welcome
+      </p>
+      <input type="submit" value="Sign Out" />
+    </form>
+  </div>
+</header>
+<main id="app">
+
+  <div class="user-info">
+    <p>Welcome, <span>{{ user.firstName }} {{ user.lastName }}</span></p>
+  </div>
+  <div class="account-info">
+    <h2>Account Information</h2>
+    <ul>
+      <li v-for="account in accounts">{{ account }}</li>
+    </ul>
+    <h3>Balance</h3>
+    <p>{{ balance }}</p>
+  </div>
+</main>
+<!-- Import any additional HTML elements or scripts here -->
+</body>
+</html>

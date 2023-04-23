@@ -44,4 +44,8 @@ public class AppController {
         return "singleAccount";
     }
 
+    @GetMapping("/css")
+    public String viewCss() throws IOException {
+        return "";
+    }
 }
