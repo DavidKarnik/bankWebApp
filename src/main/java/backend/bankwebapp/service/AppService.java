@@ -17,8 +17,9 @@ public class AppService {
     /**
      * Method will write into JSON file in accounts array new value type:amount
      * "accounts":["type:amount"]
-     * @param email - email of the user
-     * @param type - type of new account (USD, CZK, etc.)
+     *
+     * @param email  - email of the user
+     * @param type   - type of new account (USD, CZK, etc.)
      * @param amount - amount of money on the account
      * @throws IOException - file not found/ can not open
      */
@@ -60,17 +61,15 @@ public class AppService {
     /**
      * Verify that account has/has not money account of given type
      * Function for give permission for generate new money account
+     *
      * @param email - user´s main account (Id for account is email)
-     * @param type - type of the money account to verify
+     * @param type  - type of the money account to verify
      * @return - return true/false - has/has not the account
      * @throws IOException - failed work with file
      */
     public static Boolean hasTheAccountOfType(String email, String type) throws IOException {
-        //
         // Read the contents of the log.json file into a string
         String contents = new String(Files.readAllBytes(Paths.get("src/main/resources/log.json")));
-        // "src/main/resources/log.json"
-        // "target/classes/log.json"
 
         // Parse the contents into a JSONObject
         JSONObject json = new JSONObject(contents);
@@ -85,13 +84,12 @@ public class AppService {
                 // Get the "accounts" array for the matching user
                 JSONArray accounts = user.getJSONArray("accounts");
                 for (int j = 0; j < accounts.length(); j++) {
-
+//                    System.out.println(accounts.getString(j)); // "USD:1000"
+                    // "xx:yy" ... if xx equal the type return TRUE
+                    if (accounts.getString(j).split(":")[0].equals(type)) {
+                        return true;
+                    }
                 }
-//                System.out.println("Writing into the file !");
-
-                // Add the new account entry to the accounts array
-//                accounts.put(type + ":" + amount);
-
                 break;
             }
         }
@@ -107,7 +105,7 @@ public class AppService {
 //        AppService.writeToJsonFile("user@mail.com", "USD", "1000");
 
         System.out.println("Try hasTheAccountOfType()");
-        AppService.hasTheAccountOfType("user@mail.com","USD");
+        System.out.println(AppService.hasTheAccountOfType("user@mail.com", "USD"));
         // ctrl + alt + L -> beatify the code ! :)
     }
 }
