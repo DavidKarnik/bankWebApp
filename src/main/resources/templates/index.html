@@ -9,32 +9,36 @@
           crossorigin="anonymous">
 </head>
 <body>
-    <header>
-        <h1>Bank Name</h1>
-        <div class="logoutSection">
-        </div>
-    </header>
-    <div class="container text-center">
-        <div>
-            <h1>Welcome to CodeJava.net</h1>
-        </div>
-        <div>
-            <h3> <a th:href="@{/list_users}">List All Users</a></h3>
-<!--            <h3> <a th:href="@{/register}">Register</a></h3>-->
-<!--            <h3> <a th:href="@{/login}">Login</a></h3>-->
-        </div>
+<header>
+    <h1>Bank Name</h1>
+    <div class="logoutSection">
     </div>
-<div>
-    <form th:href="@{/list_users}" method="post">
-        <!--            <p>-->
-        <!--                Welcome <span th:text="${#authentication.getName()}"></span>-->
-        <!--            </p>-->
-        <input type="submit" value="Sign In" />
-    </form>
+</header>
+<div class="container text-center">
+    <div>
+        <h1>Welcome to CodeJava.net</h1>
+    </div>
+    <div>
+        <h3><a th:href="@{/users}">List All Users</a></h3>
+        <!--            <h3> <a th:href="@{/register}">Register</a></h3>-->
+        <!--            <h3> <a th:href="@{/login}">Login</a></h3>-->
+    </div>
+    <div class="login-container">
+        <form method="post" th:action="@{/myForm}">
+            <button type="submit">Log in</button>
+        </form>
+    </div>
 </div>
-    <form method="post" th:action="@{/list_users}">
-        <button type="submit">Submit</button>
-    </form>
+<!--<div>-->
+<!--    <form th:href="@{/list_users}" method="post">-->
+<!--        &lt;!&ndash;            <p>&ndash;&gt;-->
+<!--        &lt;!&ndash;                Welcome <span th:text="${#authentication.getName()}"></span>&ndash;&gt;-->
+<!--        &lt;!&ndash;            </p>&ndash;&gt;-->
+<!--        <input type="submit" value="Sign In"/>-->
+<!--    </form>-->
+<!--</div>-->
+
+
 </body>
 <style>
     header {
@@ -45,9 +49,11 @@
         color: #ffffff;
         padding: 20px;
     }
+
     body {
         margin: 0;
     }
+
     .bank-name {
         font-size: 36px;
         margin: 0;
@@ -55,6 +61,9 @@
 
     .logoutSection {
         text-align: right;
+    }
+    .login-container button{
+        padding: 10px;
     }
 </style>
 </html>

@@ -7,6 +7,19 @@
         rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
         crossorigin="anonymous">
+
+<!--
+To prevent user from navigate to previous page using back button of the browser
+or the back option in the context menu in my html page. Not the perfect,
+however it will handle the error with login params for controller.
+-->
+  <script>
+    history.pushState(null, null, location.href);
+    window.onpopstate = function () {
+      history.go(1);
+    };
+  </script>
+
 </head>
 <body>
 

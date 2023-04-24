@@ -36,17 +36,28 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .requestMatchers("/list_users", "/singleAccount", "myForm").authenticated()
+                .requestMatchers("/users"
+                        , "/singleAccount"
+                        , "/myForm"
+//                        , "/deposit"
+//                        , "/payment"
+//                        , "/open"
+//                        , "/close"
+                        )
+                .authenticated()
                 .anyRequest().permitAll()
                 .and()
                 .formLogin()
                 .usernameParameter("email")
-                .defaultSuccessUrl("/list_users")
+                .defaultSuccessUrl("/myForm")
                 .permitAll()
                 .and()
                 .logout()
                 .logoutSuccessUrl("/")
-                .permitAll();
+                .permitAll()
+                .and()
+                .exceptionHandling()
+                .accessDeniedPage("/accessDenied.html");
 
         return http.build();
     }
