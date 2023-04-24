@@ -1,21 +1,23 @@
 {
   "users": [
     {
-      "firstName": "admin",
-      "lastName": "adminLastName",
+      "firstName": "Admin",
+      "lastName": "AdminLastName",
       "password": "$2a$10$8R/G2mgqYEuAv3J04usYHOhmNIpoxy0CbAqXpeWvERLNMI/q4aHdq",
       "accounts": [
-        "USD:1011"
+        "USD:13",
+        "CZK:0",
+        "GBN:12"
       ],
       "email": "admin@mail.com"
     },
     {
-      "firstName": "user",
-      "lastName": "userLastName",
+      "firstName": "User",
+      "lastName": "UserLastName",
       "password": "$2a$10$71MBBqwlPo.ePqIP1MA1qeJ5FXLFak8Z.tDLDp/iOPNLMR2ubYrna",
       "accounts": [
-        "USD:3002",
-        "CZK:999"
+        "USD:2939",
+        "CZK:1001"
       ],
       "email": "user@mail.com"
     }

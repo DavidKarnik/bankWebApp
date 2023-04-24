@@ -117,6 +117,52 @@ public class AppController {
         return "myForm";
     }
 
+    //
+    // PAYMENT ------------------------------------------------------------------------------------------
+    //
+
+    @PostMapping("/payment")
+    public String handlePayment(@RequestParam("accountType") String accountType, @RequestParam("amount") int amount, Model model, Authentication authentication) {
+        String message = "Payment successful!";
+        String email = authentication.getName();
+
+        // Perform the open action
+        try {
+            // if accountType exist on user account
+            if((AppService.hasTheAccountOfType(email, accountType)) || (AppService.hasTheAccountOfType(email, "CZK"))) {
+                // withdraw amount of finance from the account of accountType
+                int state = AppService.withdrawMoneyFromAccount(email, accountType, amount);
+                if(state == 0) {
+                    successAction = false;
+                    message = "Account of type not exists/not enough finance and account \"CZK\" account not exists/not enough finance";
+                } else if (state == 1) {
+                    successAction = true;
+                    message = "Account of type not exists/not enough finance, system used for payment account \"CZK\"";
+                } else {
+                    successAction = true;
+                }
+            }else {
+                successAction = false;
+                message = "Payment failed! - Account " + accountType + " or CZK does not exist";
+            }
+        } catch (IOException e) {
+            System.out.println("Error: " + e);
+            successAction = false;
+//            throw new RuntimeException(e);
+        }
+
+        // Add the success or error message to the model
+        User user = UserRepository.findByEmail(email);
+        model.addAttribute("user", user); // for the html page variables !
+
+        model.addAttribute("show", true);
+        model.addAttribute("success", successAction);
+        model.addAttribute("message", message);
+
+        // Return the name of the view to render
+        // return the SAME html page !
+        return "myForm";
+    }
 
     //
     // OPEN ------------------------------------------------------------------------------------------
@@ -132,7 +178,7 @@ public class AppController {
             // if accountType NOT exist on user account accounts
             if(!AppService.hasTheAccountOfType(email, accountType)) {
                 // add account of given accountType with given amount of finance
-                AppService.writeToJsonFile(email, accountType, Integer.toString(amount));
+                AppService.openMoneyAccount(email, accountType, Integer.toString(amount));
                 successAction = true;
             } else {
                 successAction = false;
@@ -154,6 +200,39 @@ public class AppController {
 
         // Return the name of the view to render
         // return the SAME html page !
+        return "myForm";
+    }
+
+    //
+    // CLOSE ------------------------------------------------------------------------------------------
+    //
+
+    @PostMapping("/close")
+    public String handleClose(@RequestParam("accountType") String accountType, Model model, Authentication authentication) {
+        String message = "Account closed successfully!";
+        String email = authentication.getName();
+        // Perform the close action
+        try {
+            // if accountType does exist on user account accounts -> OK
+            if(AppService.hasTheAccountOfType(email, accountType)) {
+                // add account of given accountType with given amount of finance
+//                AppService.writeToJsonFile(email, accountType, Integer.toString(amount));
+                AppService.closeMoneyAccount(email, accountType);
+                successAction = true;
+            } else {
+                successAction = false;
+                message = "Account close failed! - Account (" + accountType + ") not exist";
+            }
+        } catch (IOException e) {
+            System.out.println("Error: " + e);
+            successAction = false;
+        }
+        // Add the success or error message to the model
+        User user = UserRepository.findByEmail(email);
+        model.addAttribute("user", user); // for the html page variables !
+        model.addAttribute("show", true);
+        model.addAttribute("success", successAction);
+        model.addAttribute("message", message);
         return "myForm";
     }
 

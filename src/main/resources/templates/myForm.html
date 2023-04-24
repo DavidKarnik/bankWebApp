@@ -14,9 +14,6 @@
   <h1 class="bank-name">Bank Name</h1>
   <div class="logoutSection">
     <form th:action="@{/logout}" method="post">
-      <!--            <p>-->
-      <!--                Welcome <span th:text="${#authentication.getName()}"></span>-->
-      <!--            </p>-->
       <input type="submit" value="Sign Out" />
     </form>
   </div>
@@ -24,9 +21,8 @@
 
 <div class="mainContent">
   <div class="info-container">
-    <!--        Have to login !-->
+    <!-- Have to login ! -->
     <h3 th:text="${user.firstName} + ' ' + ${user.lastName}">Name Surname</h3>
-    <!--        <span th:text="${user.firstName} + ${user.lastName}"></span>-->
     <div class="infoColumns">
       <div class="leftCol">
         <p>Account number:</p>
@@ -49,51 +45,6 @@
       <h2>Exchange rate:</h2>
     </div>
   </div>
-
-<!--  <div class="functions-container">-->
-<!--    <h2>Functions:</h2>-->
-<!--    <div>-->
-<!--      <h3>Account type:</h3>-->
-<!--      <h3>Amount:</h3>-->
-<!--    </div>-->
-<!--  </div>-->
-
-<!--  <form>-->
-<!--    <h2>Functions:</h2>-->
-
-<!--    <div class="message-container" th:if="${show}">-->
-<!--      <div th:if="${success}" class="alert alert-success">-->
-<!--        <p th:text="${message}"></p>-->
-<!--      </div>-->
-<!--      <div th:if="${not success}" class="alert alert-danger">-->
-<!--        <p th:text="${message}"></p>-->
-<!--      </div>-->
-<!--    </div>-->
-
-
-
-<!--    <div>-->
-<!--      <label for="account-type">Account type:</label>-->
-<!--      <select id="account-type" name="accountType">-->
-<!--        <option value="USD">USD</option>-->
-<!--        <option value="CZK">CZK</option>-->
-<!--        <option value="GBN">GBN</option>-->
-<!--      </select>-->
-<!--    </div>-->
-
-<!--    <div>-->
-<!--      <label for="amount">Amount:</label>-->
-<!--      <input type="number" id="amount" name="amount">-->
-<!--    </div>-->
-
-<!--    <div class="buttons-container">-->
-<!--      <button th:action="@{/deposit}" type="submit" name="action" value="deposit">Deposit (+)</button>-->
-<!--      <button th:action="@{/payment}" type="submit" name="action" value="payment">Payment (-)</button>-->
-<!--      <button th:action="@{/open}" type="submit" name="action" value="open">Open account</button>-->
-<!--      <button th:action="@{/close}" type="submit" name="action" value="close">Close account</button>-->
-<!--    </div>-->
-
-<!--  </form>-->
 
 <!--  th:action = default action of form-->
   <form method="post" th:action="@{/deposit}">
@@ -130,20 +81,6 @@
     </div>
   </form>
 
-
-  <!--  <div class="form-buttons-container">-->
-<!--    <h3>Welcome, Enter The Employee Details</h3>-->
-<!--    <h4>${message}</h4>-->
-<!--    <form method="POST" action="$@{/addEmployee}"-->
-<!--          modelAttribute="user">-->
-<!--      <table>-->
-<!--        <tr>-->
-<!--          <td><input type="submit" name="submit" value="Submit" /></td>-->
-<!--          <td><input type="submit" name="cancel" value="Cancel" /></td>-->
-<!--        </tr>-->
-<!--      </table>-->
-<!--    </form>-->
-<!--  </div>-->
 </div>
 </body>
 
