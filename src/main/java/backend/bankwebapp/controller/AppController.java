@@ -40,14 +40,6 @@ public class AppController {
         return "singleAccount";
     }
 
-    @GetMapping("/tryme")
-    public String tryMe(Model model, Authentication authentication) {
-        String email = authentication.getName();
-        User user = UserRepository.findByEmail(email);
-        model.addAttribute("user", user);
-        return "try";
-    }
-
     //
     // FORM
     //
@@ -63,18 +55,16 @@ public class AppController {
         return "myForm";
     }
 
-
     //
-    // DEPOSIT --------------------------------------------------------------------------------------
+    // Handler for refresh Request
     //
-
     /**
      * Called after any form button handler is used -> like refresh of page
      * @param model - model for html page variables
      * @param authentication - for find user
      * @return - return same page - myForm
      */
-    @RequestMapping(value={"deposit", "payment", "/open", "/close"})
+    @RequestMapping(value={"/deposit", "/payment", "/open", "/close"})
     public String myFormDeposit(Model model, Authentication authentication) {
         String email = authentication.getName();
         User user = UserRepository.findByEmail(email);
@@ -87,6 +77,10 @@ public class AppController {
         return "myForm";
     }
 
+    //
+    // DEPOSIT --------------------------------------------------------------------------------------
+    //
+
     @PostMapping("/deposit")
     public String handleDeposit(@RequestParam("accountType") String accountType, @RequestParam("amount") int amount, Model model, Authentication authentication) {
         String message = "Deposit successful!";
@@ -97,7 +91,9 @@ public class AppController {
             // if accountType exist on user account
             if(AppService.hasTheAccountOfType(email, accountType)) {
                 // add amount of finance to the account of accountType
-                AppService.writeToJsonFile(email, accountType, Integer.toString(amount));
+//                AppService.writeToJsonFile(email, accountType, Integer.toString(amount));
+                AppService.addMoneyToAccount(email, accountType, amount);
+                successAction = true;
             } else {
                 successAction = false;
                 message = "Deposit failed! - Account " + accountType + " does not exist";
@@ -126,25 +122,6 @@ public class AppController {
     // OPEN ------------------------------------------------------------------------------------------
     //
 
-//    /**
-//     * Called after handleOpen PostMapping
-//     * @param model - model for html page variables
-//     * @param authentication - for find user
-//     * @return - return same page - myForm
-//     */
-//    @GetMapping("/open")
-//    public String myFormOpen(Model model, Authentication authentication) {
-//        String email = authentication.getName();
-//        User user = UserRepository.findByEmail(email);
-//        model.addAttribute("user", user);
-////        model.addAttribute("success",false);
-////        model.addAttribute("message","aaa");
-//        model.addAttribute("show", true);
-//        model.addAttribute("success", successAction);
-//        model.addAttribute("message", "/deposit");
-//        return "myForm";
-//    }
-
     @PostMapping("/open")
     public String handleOpen(@RequestParam("accountType") String accountType, @RequestParam("amount") int amount, Model model, Authentication authentication) {
         String message = "Account opened successfully!";
@@ -156,6 +133,7 @@ public class AppController {
             if(!AppService.hasTheAccountOfType(email, accountType)) {
                 // add account of given accountType with given amount of finance
                 AppService.writeToJsonFile(email, accountType, Integer.toString(amount));
+                successAction = true;
             } else {
                 successAction = false;
                 message = "Open account failed! - User already has money account of given type (" + accountType + ")";

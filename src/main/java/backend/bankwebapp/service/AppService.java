@@ -110,6 +110,15 @@ public class AppService {
         return false;
     }
 
+    /**
+     * Function will add money to the specific money account of the email account
+     * @param email - id for account of user
+     * @param type - type of the money account to add
+     * @param amount - amount of finance to add to the money account of type
+     * @return - return true -> finance added successfully to the account
+     * @return - return false -> finance added failed (account not found, etc.)
+     * @throws IOException - throws if work with file failed
+     */
     public static Boolean addMoneyToAccount(String email, String type, int amount) throws IOException {
         // Read the contents of the log.json file into a string
         String contents = new String(Files.readAllBytes(Paths.get("src/main/resources/log.json")));
