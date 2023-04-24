@@ -95,6 +95,7 @@
 
 <!--  </form>-->
 
+<!--  th:action = default action of form-->
   <form method="post" th:action="@{/deposit}">
     <h2>Functions:</h2>
 
@@ -123,9 +124,9 @@
 
     <div class="buttons-container">
       <button type="submit" name="action" th:formaction="@{/deposit}">Deposit (+)</button>
-      <button type="submit" name="action" value="payment" formaction="/payment">Payment (-)</button>
-      <button type="submit" name="action" value="open" formaction="/open">Open account</button>
-      <button type="submit" name="action" value="close" formaction="/close">Close account</button>
+      <button type="submit" name="action" value="payment" th:formaction="@{/payment}">Payment (-)</button>
+      <button type="submit" name="action" value="open" th:formaction="@{/open}">Open account</button>
+      <button type="submit" name="action" value="close" th:formaction="@{/close}">Close account</button>
     </div>
   </form>
 

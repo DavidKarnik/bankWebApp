@@ -5,6 +5,7 @@
       "lastName": "adminLastName",
       "password": "$2a$10$8R/G2mgqYEuAv3J04usYHOhmNIpoxy0CbAqXpeWvERLNMI/q4aHdq",
       "accounts": [
+        "USD:12"
       ],
       "email": "admin@mail.com"
     },
@@ -13,7 +14,7 @@
       "lastName": "userLastName",
       "password": "$2a$10$71MBBqwlPo.ePqIP1MA1qeJ5FXLFak8Z.tDLDp/iOPNLMR2ubYrna",
       "accounts": [
-        "USD:1000",
+        "USD:3002",
         "CZK:999"
       ],
       "email": "user@mail.com"
