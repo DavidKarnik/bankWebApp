@@ -1,6 +1,8 @@
 package backend.bankwebapp.controller;
 
 
+import backend.bankwebapp.model.Account;
+import backend.bankwebapp.model.AccountRepository;
 import backend.bankwebapp.model.User;
 import backend.bankwebapp.model.UserRepository;
 import backend.bankwebapp.service.AppService;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
+// TODO double amount (balance) instead of int !
 @Controller
 //@RequestMapping("/api") // prefix need to add to the WebSecurityConfig.java
 public class AppController {
@@ -41,7 +44,7 @@ public class AppController {
     }
 
     //
-    // FORM
+    // FORM --------------------------------------------------------------------------------------
     //
 
     @GetMapping("/myForm")
@@ -49,8 +52,9 @@ public class AppController {
         String email = authentication.getName();
         User user = UserRepository.findByEmail(email);
         model.addAttribute("user", user);
-//        model.addAttribute("success",false);
-//        model.addAttribute("message","aaa");
+        List<Account> listAccounts = AccountRepository.findAccountsByUserEmail(user.getEmail());
+        model.addAttribute("listAccounts", listAccounts);
+
         model.addAttribute("show", false);
         return "myForm";
     }
@@ -69,8 +73,9 @@ public class AppController {
         String email = authentication.getName();
         User user = UserRepository.findByEmail(email);
         model.addAttribute("user", user);
-//        model.addAttribute("success",false);
-//        model.addAttribute("message","aaa");
+        List<Account> listAccounts = AccountRepository.findAccountsByUserEmail(user.getEmail());
+        model.addAttribute("listAccounts", listAccounts);
+
         model.addAttribute("show", true);
         model.addAttribute("success", successAction);
         model.addAttribute("message", "/deposit");
@@ -107,6 +112,8 @@ public class AppController {
         // Add the success or error message to the model
         User user = UserRepository.findByEmail(email);
         model.addAttribute("user", user); // for the html page variables !
+        List<Account> listAccounts = AccountRepository.findAccountsByUserEmail(user.getEmail());
+        model.addAttribute("listAccounts", listAccounts);
 
         model.addAttribute("show", true);
         model.addAttribute("success", successAction);
@@ -154,6 +161,8 @@ public class AppController {
         // Add the success or error message to the model
         User user = UserRepository.findByEmail(email);
         model.addAttribute("user", user); // for the html page variables !
+        List<Account> listAccounts = AccountRepository.findAccountsByUserEmail(user.getEmail());
+        model.addAttribute("listAccounts", listAccounts);
 
         model.addAttribute("show", true);
         model.addAttribute("success", successAction);
@@ -193,6 +202,8 @@ public class AppController {
         // Add the success or error message to the model
         User user = UserRepository.findByEmail(email);
         model.addAttribute("user", user); // for the html page variables !
+        List<Account> listAccounts = AccountRepository.findAccountsByUserEmail(user.getEmail());
+        model.addAttribute("listAccounts", listAccounts);
 
         model.addAttribute("show", true);
         model.addAttribute("success", successAction);
@@ -215,8 +226,6 @@ public class AppController {
         try {
             // if accountType does exist on user account accounts -> OK
             if(AppService.hasTheAccountOfType(email, accountType)) {
-                // add account of given accountType with given amount of finance
-//                AppService.writeToJsonFile(email, accountType, Integer.toString(amount));
                 AppService.closeMoneyAccount(email, accountType);
                 successAction = true;
             } else {
@@ -230,6 +239,9 @@ public class AppController {
         // Add the success or error message to the model
         User user = UserRepository.findByEmail(email);
         model.addAttribute("user", user); // for the html page variables !
+        List<Account> listAccounts = AccountRepository.findAccountsByUserEmail(user.getEmail());
+        model.addAttribute("listAccounts", listAccounts);
+
         model.addAttribute("show", true);
         model.addAttribute("success", successAction);
         model.addAttribute("message", message);

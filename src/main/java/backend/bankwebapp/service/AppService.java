@@ -1,5 +1,6 @@
 package backend.bankwebapp.service;
 
+import backend.bankwebapp.model.AccountRepository;
 import org.springframework.stereotype.Service;
 
 import java.io.FileWriter;
@@ -10,6 +11,7 @@ import java.nio.file.Paths;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+// TODO double amount (balance) instead of int !
 @Service
 public class AppService {
 
@@ -290,6 +292,29 @@ public class AppService {
         return new String(Files.readAllBytes(Paths.get("src/main/resources/log.json")));
     }
 
+    // user.getAccountsArray() -> ["USD:100", "CZK:234", ...]
+    // get
+    public static String getAccountsFromJSON(String email) throws IOException {
+        // Read the contents of the log.json file into a string
+        String contents = getContentOfJSON();
+        // Parse the contents into a JSONObject
+        JSONObject json = new JSONObject(contents);
+        // Get the "users" array
+        JSONArray users = json.getJSONArray("users");
+
+        // Find the user with the matching email
+        for (int i = 0; i < users.length(); i++) {
+            JSONObject user = users.getJSONObject(i);
+            if (user.getString("email").equals(email)) {
+                // Get the "accounts" array for the matching user
+//                JSONArray accounts = user.getJSONArray("accounts");
+                System.out.println((user.getJSONArray("accounts")).toString());
+                return (user.getJSONArray("accounts")).toString();
+            }
+        }
+        return null;
+    }
+
     /**
      * Test main class
      */
@@ -308,8 +333,12 @@ public class AppService {
 //        System.out.println("Try withdrawMoneyFromAccount()");
 //        System.out.println(AppService.withdrawMoneyFromAccount("admin@mail.com", "USD", 11));
 
-        System.out.println("Try closeMoneyAccount()");
-        System.out.println(AppService.closeMoneyAccount("admin@mail.com", "USD"));
+//        System.out.println("Try closeMoneyAccount()");
+//        System.out.println(AppService.closeMoneyAccount("admin@mail.com", "USD"));
+
+//        getAccountsFromJSON("user@mail.com");
+
+        AccountRepository.findAccountsByUserEmail("user@mail.com");
 
     }
 }

@@ -39,10 +39,6 @@ public class WebSecurityConfig {
                 .requestMatchers("/users"
                         , "/singleAccount"
                         , "/myForm"
-//                        , "/deposit"
-//                        , "/payment"
-//                        , "/open"
-//                        , "/close"
                         )
                 .authenticated()
                 .anyRequest().permitAll()

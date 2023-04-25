@@ -89,14 +89,6 @@ public class UserRepository {
                             (String) userJson.get("lastName"),
                             accounts
                     );
-
-//                    User user = new User(
-//                            userEmail,
-//                            (String) userJson.get("password"),
-//                            (String) userJson.get("firstName"),
-//                            (String) userJson.get("lastName"),
-//                            (String[]) userJson.get("accounts") // not working, use code above :(
-//                    );
                     reader.close();
                     return user;
                 }
