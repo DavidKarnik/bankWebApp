@@ -87,7 +87,7 @@ public class AppController {
     //
 
     @PostMapping("/deposit")
-    public String handleDeposit(@RequestParam("accountType") String accountType, @RequestParam(value = "amount", defaultValue = "0") int amount, Model model, Authentication authentication) {
+    public String handleDeposit(@RequestParam("accountType") String accountType, @RequestParam(value = "amount", defaultValue = "0") double amount, Model model, Authentication authentication) {
         String message = "Deposit successful!";
         String email = authentication.getName();
 
@@ -129,7 +129,7 @@ public class AppController {
     //
 
     @PostMapping("/payment")
-    public String handlePayment(@RequestParam("accountType") String accountType, @RequestParam(value = "amount", defaultValue = "0") int amount, Model model, Authentication authentication) {
+    public String handlePayment(@RequestParam("accountType") String accountType, @RequestParam(value = "amount", defaultValue = "0") double amount, Model model, Authentication authentication) {
         String message = "Payment successful!";
         String email = authentication.getName();
 
@@ -178,7 +178,7 @@ public class AppController {
     //
 
     @PostMapping("/open")
-    public String handleOpen(@RequestParam("accountType") String accountType, @RequestParam(value = "amount", defaultValue = "0") int amount, Model model, Authentication authentication) {
+    public String handleOpen(@RequestParam("accountType") String accountType, @RequestParam(value = "amount", defaultValue = "0") double amount, Model model, Authentication authentication) {
         String message = "Account opened successfully!";
         String email = authentication.getName();
 
@@ -187,7 +187,7 @@ public class AppController {
             // if accountType NOT exist on user account accounts
             if(!AppService.hasTheAccountOfType(email, accountType)) {
                 // add account of given accountType with given amount of finance
-                AppService.openMoneyAccount(email, accountType, Integer.toString(amount));
+                AppService.openMoneyAccount(email, accountType, Double.toString(amount));
                 successAction = true;
             } else {
                 successAction = false;

@@ -98,7 +98,7 @@ public class AppService {
      * @return - return false -> finance added failed (account not found, etc.)
      * @throws IOException - throws if work with file failed
      */
-    public static Boolean addMoneyToAccount(String email, String type, int amount) throws IOException {
+    public static Boolean addMoneyToAccount(String email, String type, double amount) throws IOException {
         // Read the contents of the log.json file into a string
         String contents = getContentOfJSON();
 
@@ -124,11 +124,11 @@ public class AppService {
                     String account = accounts.getString(j);
                     String[] accountParts = account.split(":");
                     String _type = accountParts[0];
-                    int oldAmount = Integer.parseInt(accountParts[1]);
+                    double oldAmount = Double.parseDouble(accountParts[1]);
 
                     if (_type.equals(type)) {
                         // Update the amount of the matching account
-                        int newAmount = oldAmount + amount;
+                        double newAmount = oldAmount + amount;
                         accounts.put(j, _type + ":" + newAmount);
 
                         // Write the modified JSON back to the log.json file
@@ -156,7 +156,7 @@ public class AppService {
      *                     1 - success - Account of type not exists/not enough finance and account "CZK" has enough finance
      *                     2 - success - Account of type has enough finance
      */
-    public static int withdrawMoneyFromAccount(String email, String type, int amount) throws IOException {
+    public static int withdrawMoneyFromAccount(String email, String type, double amount) throws IOException {
         String contents = getContentOfJSON();
         JSONObject json = new JSONObject(contents);
         JSONArray users = json.getJSONArray("users");
@@ -168,7 +168,7 @@ public class AppService {
 //        }
 
         int state = 2;
-        int newAmount = 0;
+        double newAmount = 0;
 
         // Find the user with the matching email
         for (int i = 0; i < users.length(); i++) {
@@ -186,7 +186,7 @@ public class AppService {
 
                     if (_type.equals(type)) {
                         // account of type found
-                        int oldAmount = Integer.parseInt(accountParts[1]);
+                        double oldAmount = Double.parseDouble(accountParts[1]);
                         // try
                         if (oldAmount < amount) {
                             // try czk account
@@ -216,7 +216,7 @@ public class AppService {
 
                     if (_type.equalsIgnoreCase("CZK")) {
                         // account of type found
-                        int oldAmount = Integer.parseInt(accountParts[1]);
+                        double oldAmount = Double.parseDouble(accountParts[1]);
                         // try
                         if (oldAmount < amount) {
                             return 0; // account czk has not enough finance
