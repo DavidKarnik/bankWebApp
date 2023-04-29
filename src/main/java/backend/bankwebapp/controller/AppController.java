@@ -53,6 +53,10 @@ public class AppController {
         model.addAttribute("listAccounts", listAccounts);
 
         model.addAttribute("show", false);
+
+        List<ExchangeRate> listExchangeRates = ExchangeRateRepository.getListOfExchangeRates();
+        model.addAttribute("listExchangeRates", listExchangeRates);
+        
         return "myForm";
     }
 
@@ -76,6 +80,10 @@ public class AppController {
         model.addAttribute("show", true);
         model.addAttribute("success", successAction);
         model.addAttribute("message", "/deposit");
+
+        List<ExchangeRate> listExchangeRates = ExchangeRateRepository.getListOfExchangeRates();
+        model.addAttribute("listExchangeRates", listExchangeRates);
+
         return "myForm";
     }
 
@@ -115,6 +123,9 @@ public class AppController {
         model.addAttribute("show", true);
         model.addAttribute("success", successAction);
         model.addAttribute("message", message);
+
+        List<ExchangeRate> listExchangeRates = ExchangeRateRepository.getListOfExchangeRates();
+        model.addAttribute("listExchangeRates", listExchangeRates);
 
         // Return the name of the view to render
         // return the SAME html page !
@@ -209,6 +220,9 @@ public class AppController {
         model.addAttribute("success", successAction);
         model.addAttribute("message", message);
 
+        List<ExchangeRate> listExchangeRates = ExchangeRateRepository.getListOfExchangeRates();
+        model.addAttribute("listExchangeRates", listExchangeRates);
+
         // Return the name of the view to render
         // return the SAME html page !
         return "myForm";
@@ -245,6 +259,10 @@ public class AppController {
         model.addAttribute("show", true);
         model.addAttribute("success", successAction);
         model.addAttribute("message", message);
+
+        List<ExchangeRate> listExchangeRates = ExchangeRateRepository.getListOfExchangeRates();
+        model.addAttribute("listExchangeRates", listExchangeRates);
+
         return "myForm";
     }
 
