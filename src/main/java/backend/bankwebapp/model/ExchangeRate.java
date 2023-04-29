@@ -18,4 +18,5 @@ public class ExchangeRate {
     private String code;
     private String exchangeRate;
 
+
 }

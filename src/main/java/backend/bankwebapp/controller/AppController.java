@@ -1,10 +1,7 @@
 package backend.bankwebapp.controller;
 
 
-import backend.bankwebapp.model.Account;
-import backend.bankwebapp.model.AccountRepository;
-import backend.bankwebapp.model.User;
-import backend.bankwebapp.model.UserRepository;
+import backend.bankwebapp.model.*;
 import backend.bankwebapp.service.AppService;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -167,6 +164,9 @@ public class AppController {
         model.addAttribute("show", true);
         model.addAttribute("success", successAction);
         model.addAttribute("message", message);
+
+        List<ExchangeRate> listExchangeRates = ExchangeRateRepository.getListOfExchangeRates();
+        model.addAttribute("listExchangeRates", listExchangeRates);
 
         // Return the name of the view to render
         // return the SAME html page !
