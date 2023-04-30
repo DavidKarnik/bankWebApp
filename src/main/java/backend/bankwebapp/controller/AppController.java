@@ -56,7 +56,7 @@ public class AppController {
 
         List<ExchangeRate> listExchangeRates = ExchangeRateRepository.getListOfExchangeRates();
         model.addAttribute("listExchangeRates", listExchangeRates);
-        
+
         return "myForm";
     }
 
