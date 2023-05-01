@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
+import static backend.bankwebapp.service.ExchangeRateService.doExchangeRateCount;
+
 // TODO double amount (balance) instead of int !
 @Controller
 //@RequestMapping("/api") // prefix need to add to the WebSecurityConfig.java
@@ -63,13 +65,15 @@ public class AppController {
     //
     // Handler for refresh Request
     //
+
     /**
      * Called after any form button handler is used -> like refresh of page
-     * @param model - model for html page variables
+     *
+     * @param model          - model for html page variables
      * @param authentication - for find user
      * @return - return same page - myForm
      */
-    @RequestMapping(value={"/deposit", "/payment", "/open", "/close"})
+    @RequestMapping(value = {"/deposit", "/payment", "/open", "/close"})
     public String myFormDeposit(Model model, Authentication authentication) {
         String email = authentication.getName();
         User user = UserRepository.findByEmail(email);
@@ -99,7 +103,7 @@ public class AppController {
         // Perform the open action
         try {
             // if accountType exist on user account
-            if(AppService.hasTheAccountOfType(email, accountType)) {
+            if (AppService.hasTheAccountOfType(email, accountType)) {
                 // add amount of finance to the account of accountType
 //                AppService.writeToJsonFile(email, accountType, Integer.toString(amount));
                 AppService.addMoneyToAccount(email, accountType, amount);
@@ -137,17 +141,21 @@ public class AppController {
     //
 
     @PostMapping("/payment")
-    public String handlePayment(@RequestParam("accountType") String accountType, @RequestParam(value = "amount", defaultValue = "0") double amount, @RequestParam("currency") String currency, Model model, Authentication authentication) {
+    public String handlePayment(@RequestParam("accountType") String accountType, @RequestParam(value = "amount", defaultValue = "0") double amount, Model model, Authentication authentication) {
         String message = "Payment successful!";
         String email = authentication.getName();
 
         // Perform the open action
         try {
             // if accountType exist on user account
-            if((AppService.hasTheAccountOfType(email, accountType)) || (AppService.hasTheAccountOfType(email, "CZK"))) {
+            if ((AppService.hasTheAccountOfType(email, accountType)) || (AppService.hasTheAccountOfType(email, "CZK"))) {
+                // exchange rates
+                double realAmount = amount; // CZK to CZK
+                realAmount = doExchangeRateCount(accountType, realAmount);
+
                 // withdraw amount of finance from the account of accountType
-                int state = AppService.withdrawMoneyFromAccount(email, accountType, amount);
-                if(state == 0) {
+                int state = AppService.withdrawMoneyFromAccount(email, accountType, realAmount);
+                if (state == 0) {
                     successAction = false;
                     message = "Account of type not exists/not enough finance and account \"CZK\" account not exists/not enough finance";
                 } else if (state == 1) {
@@ -156,7 +164,7 @@ public class AppController {
                 } else {
                     successAction = true;
                 }
-            }else {
+            } else {
                 successAction = false;
                 message = "Payment failed! - Account " + accountType + " or CZK does not exist";
             }
@@ -196,7 +204,7 @@ public class AppController {
         // Perform the open action
         try {
             // if accountType NOT exist on user account accounts
-            if(!AppService.hasTheAccountOfType(email, accountType)) {
+            if (!AppService.hasTheAccountOfType(email, accountType)) {
                 // add account of given accountType with given amount of finance
                 AppService.openMoneyAccount(email, accountType, Double.toString(amount));
                 successAction = true;
@@ -239,7 +247,7 @@ public class AppController {
         // Perform the close action
         try {
             // if accountType does exist on user account accounts -> OK
-            if(AppService.hasTheAccountOfType(email, accountType)) {
+            if (AppService.hasTheAccountOfType(email, accountType)) {
                 AppService.closeMoneyAccount(email, accountType);
                 successAction = true;
             } else {

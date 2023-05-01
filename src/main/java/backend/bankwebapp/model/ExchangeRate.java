@@ -17,6 +17,4 @@ public class ExchangeRate {
     private String amount;
     private String code;
     private String exchangeRate;
-
-
 }

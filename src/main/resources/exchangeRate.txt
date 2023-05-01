@@ -1,4 +1,4 @@
-2023-04-29 19:15:56
+2023-05-01 18:07:19
 28.04.2023 #83
 země|měna|množství|kód|kurz
 Austrálie|dolar|1|AUD|14,099
@@ -32,3 +32,4 @@ Thajsko|baht|100|THB|62,736
 Turecko|lira|1|TRY|1,101
 USA|dolar|1|USD|21,411
 Velká Británie|libra|1|GBP|26,695
+
