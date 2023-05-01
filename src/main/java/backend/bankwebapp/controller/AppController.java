@@ -96,7 +96,7 @@ public class AppController {
     //
 
     @PostMapping("/deposit")
-    public String handleDeposit(@RequestParam("accountType") String accountType, @RequestParam(value = "amount", defaultValue = "0") double amount, @RequestParam("currency") String currency, Model model, Authentication authentication) {
+    public String handleDeposit(@RequestParam("accountType") String accountType, @RequestParam(value = "amount", defaultValue = "0") double amount, Model model, Authentication authentication) {
         String message = "Deposit successful!";
         String email = authentication.getName();
 
@@ -150,17 +150,18 @@ public class AppController {
             // if accountType exist on user account
             if ((AppService.hasTheAccountOfType(email, accountType)) || (AppService.hasTheAccountOfType(email, "CZK"))) {
                 // exchange rates
-                double realAmount = amount; // CZK to CZK
-                realAmount = doExchangeRateCount(accountType, realAmount);
+//                double realAmount = amount; // CZK to CZK
+//                realAmount = doExchangeRateCount(accountType, realAmount);
 
                 // withdraw amount of finance from the account of accountType
-                int state = AppService.withdrawMoneyFromAccount(email, accountType, realAmount);
+                int state = AppService.withdrawMoneyFromAccount(email, accountType, amount);
                 if (state == 0) {
                     successAction = false;
                     message = "Account of type not exists/not enough finance and account \"CZK\" account not exists/not enough finance";
                 } else if (state == 1) {
                     successAction = true;
-                    message = "Account of type not exists/not enough finance, system used for payment account \"CZK\"";
+                    message = "Account of type not exists/not enough finance, system used for payment account \"CZK\"" +
+                            " with Exchange Rate: " + ExchangeRateRepository.getSpecificExchangeRateForPrint(accountType);
                 } else {
                     successAction = true;
                 }
@@ -197,7 +198,7 @@ public class AppController {
     //
 
     @PostMapping("/open")
-    public String handleOpen(@RequestParam("accountType") String accountType, @RequestParam(value = "amount", defaultValue = "0") double amount, @RequestParam("currency") String currency, Model model, Authentication authentication) {
+    public String handleOpen(@RequestParam("accountType") String accountType, @RequestParam(value = "amount", defaultValue = "0") double amount, Model model, Authentication authentication) {
         String message = "Account opened successfully!";
         String email = authentication.getName();
 

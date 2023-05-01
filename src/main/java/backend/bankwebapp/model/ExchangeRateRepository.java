@@ -126,6 +126,17 @@ public class ExchangeRateRepository {
         return null;
     }
 
+    /**
+     *
+     * @param currencyCode - Code of Currency (eg. "USD", "CZK")
+     * @return - eg. "USD 1x 21,144"
+     */
+    public static String getSpecificExchangeRateForPrint(String currencyCode) {
+        String[] exRate = getSpecificExchangeRateLineByCode(currencyCode);
+        String output = exRate[3] + " " + exRate[2] + "x " + exRate[4];
+        return output;
+    }
+
     //    Testing
     public static void main(String[] args) {
         // Press Alt+Enter with your caret at the highlighted text to see how

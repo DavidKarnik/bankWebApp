@@ -55,10 +55,9 @@ public class ExchangeRateService {
         }
         String[] exchangeInfo = getSpecificExchangeRateLineByCode(currencyFrom);
         // TODO handle exchangeInfo == null
-
         double ExAmount = Double.parseDouble(exchangeInfo[2].replaceAll(",",".")); // amount to CZK
         double ExRate = Double.parseDouble(exchangeInfo[4].replaceAll(",",".")); // exchange rate
-        output = output * ExRate / ExAmount;
+        output = (output * ExRate) / ExAmount;
         return output;
     }
 

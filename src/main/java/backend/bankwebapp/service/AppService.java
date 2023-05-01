@@ -11,6 +11,8 @@ import java.nio.file.Paths;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import static backend.bankwebapp.service.ExchangeRateService.doExchangeRateCount;
+
 // TODO double amount (balance) instead of int !
 @Service
 public class AppService {
@@ -198,6 +200,10 @@ public class AppService {
                 }
 
                 // try to find czk account if given accountType != "CZK"
+                // USE exchange rate
+                double realAmount = amount; // CZK to CZK
+                realAmount = doExchangeRateCount(type, realAmount);
+
                 for (int a = 0; a < accounts.length(); a++) {
                     String account = accounts.getString(a);
                     String[] accountParts = account.split(":");
@@ -207,13 +213,13 @@ public class AppService {
                         // account of type found
                         double oldAmount = Double.parseDouble(accountParts[1]);
                         // try
-                        if (oldAmount < amount) {
+                        if (oldAmount < realAmount) {
                             return 0; // account czk has not enough finance
                         }
                         // OK
                         state = 1;
                         // Update the amount of the matching account
-                        newAmount = oldAmount - amount;
+                        newAmount = oldAmount - realAmount;
                         accounts.put(a, _type + ":" + newAmount);
                         // Write the modified JSON back to the log.json file
                         FileWriter file = new FileWriter("src/main/resources/log.json");
