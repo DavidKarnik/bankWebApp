@@ -22,7 +22,7 @@ public class CustomUserDetailsService implements UserDetailsService {
             user = UserRepository.findByEmail(email);
             System.out.println("New login request");
             System.out.println("user: " + user);
-            System.out.println("email input: " + email);
+//            System.out.println("email input: " + email);
 //        } catch (IOException e) {
 //            throw new RuntimeException(e + " errrrrrrrrrrrorrrrrr");
 //        }
