@@ -152,19 +152,76 @@
         <div>
             <label for="account-type">Account type:</label>
             <select id="account-type" name="accountType">
-                <option value="USD">USD</option>
-                <option value="CZK">CZK</option>
+                <option value="AUD">AUD</option>
+                <option value="BRL">BRL</option>
                 <option value="GBN">GBN</option>
+                <option value="CNY">CNY</option>
+                <option value="DKK">DKK</option>
+                <option value="EUR">EUR</option>
+                <option value="PHP">PHP</option>
+                <option value="HKD">HKD</option>
+                <option value="INR">INR</option>
+                <option value="IDR">IDR</option>
+                <option value="ISK">ISK</option>
+                <option value="ILS">ILS</option>
+                <option value="JPY">JPY</option>
+                <option value="ZAR">ZAR</option>
+                <option value="CAD">CAD</option>
+                <option value="KRW">KRW</option>
+                <option value="HUF">HUF</option>
+                <option value="MYR">MYR</option>
+                <option value="MXN">MXN</option>
+                <option value="XDR">XDR</option>
+                <option value="NOK">NOK</option>
+                <option value="NZD">NZD</option>
+                <option value="PLN">PLN</option>
+                <option value="RON">RON</option>
+                <option value="SGD">SGD</option>
+                <option value="SEK">SEK</option>
+                <option value="CHF">CHF</option>
+                <option value="THB">THB</option>
+                <option value="TRY">TRY</option>
+                <option value="USD">USD</option>
+                <option value="GBP">GBP</option>
             </select>
         </div>
 
-        <!--    <div>-->
-        <!--      <label for="amount">Amount:</label>-->
-        <!--      <input type="number" id="amount" name="amount">-->
-        <!--    </div>-->
         <div>
             <label for="amount">Amount:</label>
             <input type="text" id="amount" name="amount">
+            <select name="currency">
+                <option value="AUD">AUD</option>
+                <option value="BRL">BRL</option>
+                <option value="GBN">GBN</option>
+                <option value="CNY">CNY</option>
+                <option value="DKK">DKK</option>
+                <option value="EUR">EUR</option>
+                <option value="PHP">PHP</option>
+                <option value="HKD">HKD</option>
+                <option value="INR">INR</option>
+                <option value="IDR">IDR</option>
+                <option value="ISK">ISK</option>
+                <option value="ILS">ILS</option>
+                <option value="JPY">JPY</option>
+                <option value="ZAR">ZAR</option>
+                <option value="CAD">CAD</option>
+                <option value="KRW">KRW</option>
+                <option value="HUF">HUF</option>
+                <option value="MYR">MYR</option>
+                <option value="MXN">MXN</option>
+                <option value="XDR">XDR</option>
+                <option value="NOK">NOK</option>
+                <option value="NZD">NZD</option>
+                <option value="PLN">PLN</option>
+                <option value="RON">RON</option>
+                <option value="SGD">SGD</option>
+                <option value="SEK">SEK</option>
+                <option value="CHF">CHF</option>
+                <option value="THB">THB</option>
+                <option value="TRY">TRY</option>
+                <option value="USD">USD</option>
+                <option value="GBP">GBP</option>
+            </select>
         </div>
 
         <div class="buttons-container">
@@ -202,66 +259,61 @@
         color: #ffffff;
         padding: 20px;
     }
-
-    body {
-        margin: 0;
-    }
-
-    .mainContent {
-        margin: 10px;
-    }
-
     .bank-name {
-        font-size: 36px;
+        /*font-size: 36px;*/
+        font-size: 5vw;
         margin: 0;
     }
-
     .logoutSection {
         text-align: right;
     }
 
+    body {
+        margin: 0;
+    }
+    .mainContent {
+        margin: 10px;
+    }
+
+    /*First Info*/
     .infoColumns {
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
     }
-
     .leftCol {
         display: flex;
         flex-direction: column;
     }
-
     .leftCol p {
         margin-bottom: 0;
     }
-
     .rightCol {
         display: flex;
         flex-direction: column;
         align-items: flex-end;
     }
-
     .rightCol p {
         margin-bottom: 0;
     }
 
+    /*Open Accounts: and Exchange Rate:*/
     .mid-container {
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
     }
-
     .left-accounts {
         display: flex;
         flex-direction: column;
     }
-
     .right-exchange {
         display: flex;
         flex-direction: column;
         align-items: flex-end;
     }
 
+    /*Function buttons*/
     .buttons-container {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -269,7 +321,6 @@
         gap: 10px;
         margin-top: 10px;
     }
-
     .buttons-container button {
         padding: 10px;
     }

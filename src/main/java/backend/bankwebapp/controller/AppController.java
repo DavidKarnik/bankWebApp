@@ -92,7 +92,7 @@ public class AppController {
     //
 
     @PostMapping("/deposit")
-    public String handleDeposit(@RequestParam("accountType") String accountType, @RequestParam(value = "amount", defaultValue = "0") double amount, Model model, Authentication authentication) {
+    public String handleDeposit(@RequestParam("accountType") String accountType, @RequestParam(value = "amount", defaultValue = "0") double amount, @RequestParam("currency") String currency, Model model, Authentication authentication) {
         String message = "Deposit successful!";
         String email = authentication.getName();
 
@@ -137,7 +137,7 @@ public class AppController {
     //
 
     @PostMapping("/payment")
-    public String handlePayment(@RequestParam("accountType") String accountType, @RequestParam(value = "amount", defaultValue = "0") double amount, Model model, Authentication authentication) {
+    public String handlePayment(@RequestParam("accountType") String accountType, @RequestParam(value = "amount", defaultValue = "0") double amount, @RequestParam("currency") String currency, Model model, Authentication authentication) {
         String message = "Payment successful!";
         String email = authentication.getName();
 
@@ -189,7 +189,7 @@ public class AppController {
     //
 
     @PostMapping("/open")
-    public String handleOpen(@RequestParam("accountType") String accountType, @RequestParam(value = "amount", defaultValue = "0") double amount, Model model, Authentication authentication) {
+    public String handleOpen(@RequestParam("accountType") String accountType, @RequestParam(value = "amount", defaultValue = "0") double amount, @RequestParam("currency") String currency, Model model, Authentication authentication) {
         String message = "Account opened successfully!";
         String email = authentication.getName();
 
