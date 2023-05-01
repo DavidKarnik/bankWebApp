@@ -31,7 +31,6 @@ public class AppService {
         JSONObject json = new JSONObject(contents);
         // Get the "users" array
         JSONArray users = json.getJSONArray("users");
-
         // Find the user with the matching email
         for (int i = 0; i < users.length(); i++) {
             JSONObject user = users.getJSONObject(i);
@@ -74,10 +73,8 @@ public class AppService {
             if (user.getString("email").equals(email)) {
                 // Get the "accounts" array for the matching user
                 JSONArray accounts = user.getJSONArray("accounts");
-
                 // Add the new account entry to the accounts array
                 accounts.put(type + ":" + amount);
-
                 break;
             }
         }
@@ -115,7 +112,6 @@ public class AppService {
             JSONObject user = users.getJSONObject(i);
             if (user.getString("email").equals(email)) {
 
-
                 // Get the "accounts" array for the matching user
                 JSONArray accounts = user.getJSONArray("accounts");
 
@@ -130,7 +126,6 @@ public class AppService {
                         // Update the amount of the matching account
                         double newAmount = oldAmount + amount;
                         accounts.put(j, _type + ":" + newAmount);
-
                         // Write the modified JSON back to the log.json file
                         FileWriter file = new FileWriter("src/main/resources/log.json");
                         file.write(json.toString());
@@ -160,12 +155,6 @@ public class AppService {
         String contents = getContentOfJSON();
         JSONObject json = new JSONObject(contents);
         JSONArray users = json.getJSONArray("users");
-
-//        if (hasTheAccountOfType(email, type)) {
-//
-//        } else if (hasTheAccountOfType(email, "CZK")) {
-//
-//        }
 
         int state = 2;
         double newAmount = 0;

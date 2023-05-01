@@ -33,17 +33,16 @@ public class AccountRepository {
                         // Format the data to the right format
                         String currency = accounts[i].split(":")[0];
                         String balance = accounts[i].split(":")[1];
-                        System.out.println("accounts[i] " + accounts[i]);
+//                        System.out.println("accounts[i] " + accounts[i]);
                         Account acc = new Account(
                                 currency,
                                 balance
                         );
                         accountsList.add(acc);
-                        System.out.println("acc = " + acc);
+//                        System.out.println("acc = " + acc);
                     }
 //                    System.out.println("accounts " + accounts);
-                    System.out.println("accountsJsonArray " + accountsJsonArray);
-
+//                    System.out.println("accountsJsonArray " + accountsJsonArray);
                     reader.close();
                     return accountsList;
                 }
@@ -52,6 +51,6 @@ public class AccountRepository {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null; // Return null if Account user is not found
+        return null; // Return null if Account is not found
     }
 }
