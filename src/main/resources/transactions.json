@@ -1,15 +1,1 @@
-{
-  "users": [
-    {
-      "transactions": [
-        "2023-05-01 18:07:19|USD|Deposit|1000",
-        "2023-05-02 11:53:57|CZK|Deposit|99"
-      ],
-      "email": "admin@mail.com"
-    },
-    {
-      "transactions": [],
-      "email": "user@mail.com"
-    }
-  ]
-}
+{"users":[{"transactions":["2023-05-01 18:07:19|USD|Deposit|1000","2023-05-02 11:53:57|CZK|Deposit|99","2023-05-02 12:17:54|CZK|Deposit|+0.0","2023-05-02 12:18:53|CZK|Payment|-0.0"],"email":"admin@mail.com"},{"transactions":["2023-05-02 12:20:15|CZK|Payment|-0.0","2023-05-02 12:20:17|CZK|Payment|-0.0","2023-05-02 12:20:37|CZK|Close account|-","2023-05-02 12:20:49|AUD|Open account|0.0","2023-05-02 12:20:57|CZK|Open account|0.0","2023-05-02 12:21:00|CZK|Deposit|+500.0","2023-05-02 12:21:05|AUD|Deposit|+50.0","2023-05-02 12:21:30|CZK|Deposit|+500.0","2023-05-02 12:21:35|CZK|Payment|-719.049"],"email":"user@mail.com"}]}

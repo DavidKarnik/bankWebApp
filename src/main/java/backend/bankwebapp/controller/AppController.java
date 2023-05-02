@@ -59,6 +59,8 @@ public class AppController {
         List<ExchangeRate> listExchangeRates = ExchangeRateRepository.getListOfExchangeRates();
         model.addAttribute("listExchangeRates", listExchangeRates);
 
+        List<Transaction> listTransactions = TransactionRepository.getTransactionsOfUserByEmail(user.getEmail());
+        model.addAttribute("listTransactions", listTransactions);
         return "myForm";
     }
 
@@ -88,6 +90,8 @@ public class AppController {
         List<ExchangeRate> listExchangeRates = ExchangeRateRepository.getListOfExchangeRates();
         model.addAttribute("listExchangeRates", listExchangeRates);
 
+        List<Transaction> listTransactions = TransactionRepository.getTransactionsOfUserByEmail(user.getEmail());
+        model.addAttribute("listTransactions", listTransactions);
         return "myForm";
     }
 
@@ -131,6 +135,8 @@ public class AppController {
         List<ExchangeRate> listExchangeRates = ExchangeRateRepository.getListOfExchangeRates();
         model.addAttribute("listExchangeRates", listExchangeRates);
 
+        List<Transaction> listTransactions = TransactionRepository.getTransactionsOfUserByEmail(user.getEmail());
+        model.addAttribute("listTransactions", listTransactions);
         // Return the name of the view to render
         // return the SAME html page !
         return "myForm";
@@ -188,6 +194,8 @@ public class AppController {
         List<ExchangeRate> listExchangeRates = ExchangeRateRepository.getListOfExchangeRates();
         model.addAttribute("listExchangeRates", listExchangeRates);
 
+        List<Transaction> listTransactions = TransactionRepository.getTransactionsOfUserByEmail(user.getEmail());
+        model.addAttribute("listTransactions", listTransactions);
         // Return the name of the view to render
         // return the SAME html page !
         return "myForm";
@@ -232,6 +240,8 @@ public class AppController {
         List<ExchangeRate> listExchangeRates = ExchangeRateRepository.getListOfExchangeRates();
         model.addAttribute("listExchangeRates", listExchangeRates);
 
+        List<Transaction> listTransactions = TransactionRepository.getTransactionsOfUserByEmail(user.getEmail());
+        model.addAttribute("listTransactions", listTransactions);
         // Return the name of the view to render
         // return the SAME html page !
         return "myForm";
@@ -272,6 +282,8 @@ public class AppController {
         List<ExchangeRate> listExchangeRates = ExchangeRateRepository.getListOfExchangeRates();
         model.addAttribute("listExchangeRates", listExchangeRates);
 
+        List<Transaction> listTransactions = TransactionRepository.getTransactionsOfUserByEmail(user.getEmail());
+        model.addAttribute("listTransactions", listTransactions);
         return "myForm";
     }
 

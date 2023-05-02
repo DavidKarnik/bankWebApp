@@ -8,7 +8,7 @@
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
           crossorigin="anonymous">
     <!-- Bootstrap CSS -->
-<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">-->
+    <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">-->
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
@@ -81,58 +81,110 @@
 
                 </table>
             </div>
-
         </div>
-        <div class="right-exchange">
-            <h2>Exchange rate:</h2>
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                Show Exchange Rates
-            </button>
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                 aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Exchange Rates</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
 
-                            <div>
-                                <table class="table table-striped table-bordered">
-                                    <thead class="thead-dark">
-                                    <tr>
-                                        <!--                        <th>User ID</th>-->
-                                        <th>Country</th>
-                                        <th>Currency</th>
-                                        <th>Amount</th>
-                                        <th>Code</th>
-                                        <th>Exchange Rate</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr th:each="exRate: ${listExchangeRates}">
-                                        <td th:text="${exRate.getCountry}">Country</td>
-                                        <td th:text="${exRate.getCurrency}">Currency</td>
-                                        <td th:text="${exRate.getAmount}">Amount</td>
-                                        <td th:text="${exRate.getCode}">Code</td>
-                                        <td th:text="${exRate.getExchangeRate}">Exchange Rate</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+        <div class="right-exchange-transaction">
+            <div class="exchange">
+                <h2>Exchange rate:</h2>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    Show Exchange Rates
+                </button>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                     aria-labelledby="exampleModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Exchange Rates</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <div class="modal-body">
+
+                                <div>
+                                    <table class="table table-striped table-bordered">
+                                        <thead class="thead-dark">
+                                        <tr>
+                                            <!--                        <th>User ID</th>-->
+                                            <th>Country</th>
+                                            <th>Currency</th>
+                                            <th>Amount</th>
+                                            <th>Code</th>
+                                            <th>Exchange Rate</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="exRate: ${listExchangeRates}">
+                                            <td th:text="${exRate.getCountry}">Country</td>
+                                            <td th:text="${exRate.getCurrency}">Currency</td>
+                                            <td th:text="${exRate.getAmount}">Amount</td>
+                                            <td th:text="${exRate.getCode}">Code</td>
+                                            <td th:text="${exRate.getExchangeRate}">Exchange Rate</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <div class="transaction">
+                <h2>Transactions:</h2>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2">
+                    Show Transactions
+                </button>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog"
+                     aria-labelledby="exampleModalLabel2"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel2">Transactions</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+
+                                <div>
+                                    <table class="table table-striped table-bordered">
+                                        <thead class="thead-dark">
+                                        <tr>
+                                            <!--                        <th>User ID</th>-->
+                                            <th>TimeStamp</th>
+                                            <th>Account</th>
+                                            <th>Action</th>
+                                            <th>Finances</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="tran: ${listTransactions}">
+                                            <td th:text="${tran.getTimeStamp}">TimeStamp</td>
+                                            <td th:text="${tran.getAccountType}">accountType</td>
+                                            <td th:text="${tran.getAction}">Action</td>
+                                            <td th:text="${tran.getFinances}">Finances</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -227,11 +279,13 @@
         color: #ffffff;
         padding: 20px;
     }
+
     .bank-name {
         /*font-size: 36px;*/
         font-size: 5vw;
         margin: 0;
     }
+
     .logoutSection {
         text-align: right;
     }
@@ -239,6 +293,7 @@
     body {
         margin: 0;
     }
+
     .mainContent {
         margin: 10px;
     }
@@ -249,18 +304,22 @@
         justify-content: space-between;
         align-items: flex-start;
     }
+
     .leftCol {
         display: flex;
         flex-direction: column;
     }
+
     .leftCol p {
         margin-bottom: 0;
     }
+
     .rightCol {
         display: flex;
         flex-direction: column;
         align-items: flex-end;
     }
+
     .rightCol p {
         margin-bottom: 0;
     }
@@ -271,11 +330,13 @@
         justify-content: space-between;
         align-items: flex-start;
     }
+
     .left-accounts {
         display: flex;
         flex-direction: column;
     }
-    .right-exchange {
+
+    .right-exchange-transaction {
         display: flex;
         flex-direction: column;
         align-items: flex-end;
@@ -289,6 +350,7 @@
         gap: 10px;
         margin-top: 10px;
     }
+
     .buttons-container button {
         padding: 10px;
     }
