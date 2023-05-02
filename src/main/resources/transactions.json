@@ -1,15 +1,15 @@
 {
   "users": [
     {
-      "email": "admin@mail.com",
       "transactions": [
-        "2023-05-01 18:07:19|USD|Deposit|1000"
-      ]
+        "2023-05-01 18:07:19|USD|Deposit|1000",
+        "2023-05-02 11:53:57|CZK|Deposit|99"
+      ],
+      "email": "admin@mail.com"
     },
     {
-      "email": "user@mail.com",
-      "transactions": [
-      ]
+      "transactions": [],
+      "email": "user@mail.com"
     }
   ]
 }

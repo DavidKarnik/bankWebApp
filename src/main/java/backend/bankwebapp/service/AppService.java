@@ -12,8 +12,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import static backend.bankwebapp.service.ExchangeRateService.doExchangeRateCount;
+import static backend.bankwebapp.service.TransactionService.addTransactionToUserByEmail;
 
-// TODO double amount (balance) instead of int !
 @Service
 public class AppService {
 
@@ -100,7 +100,7 @@ public class AppService {
                         file.close();
 
                         // Add Transaction info
-
+                        addTransactionToUserByEmail(email, type, "Deposit", "+" + String.valueOf(amount));
 
                         return true;
                     }
@@ -164,6 +164,8 @@ public class AppService {
                         file.write(json.toString());
                         file.flush();
                         file.close();
+                        // Add Transaction info
+                        addTransactionToUserByEmail(email, type, "Payment", "-" + String.valueOf(amount));
                         return state;
                     }
                 }
@@ -195,6 +197,8 @@ public class AppService {
                         file.write(json.toString());
                         file.flush();
                         file.close();
+                        // Add Transaction info
+                        addTransactionToUserByEmail(email, "CZK", "Payment", "-" + String.valueOf(realAmount));
                         return state;
                     }
                 }
@@ -237,11 +241,14 @@ public class AppService {
         file.write(json.toString());
         file.flush();
         file.close();
+        // Add Transaction Action info
+        addTransactionToUserByEmail(email, type, "Open account", String.valueOf(amount));
     }
 
     /**
      * Method will close money account that matches the given accountType from users account by users email
-     * @param email - id for account of user
+     *
+     * @param email       - id for account of user
      * @param accountType - type of the money account to add
      * @return Boolean - true/false - successful/failed to close account
      * @throws IOException - file error
@@ -272,6 +279,8 @@ public class AppService {
                         file.write(json.toString());
                         file.flush();
                         file.close();
+                        // Add Transaction Action info
+                        addTransactionToUserByEmail(email, accountType, "Close account", "-");
                         return true;
                     }
                 }

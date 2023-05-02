@@ -12,7 +12,7 @@ import lombok.Setter;
 public class Transaction {
     // eg. "2023-05-01 18:07:19|USD|Deposit|1000"
     // in file "src/main/resources/transactions.json"
-    private String timestamp;
+    private String timeStamp;
     private String accountType;
     private String action;
     private String finances;
@@ -20,7 +20,7 @@ public class Transaction {
     @Override
     public String toString() {
         return "Transaction{" +
-                "timestamp='" + timestamp + '\'' +
+                "timestamp='" + timeStamp + '\'' +
                 ", accountType='" + accountType + '\'' +
                 ", action='" + action + '\'' +
                 ", finances='" + finances + '\'' +
