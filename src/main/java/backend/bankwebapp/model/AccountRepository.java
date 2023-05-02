@@ -11,7 +11,13 @@ import java.util.List;
 
 @Repository
 public class AccountRepository {
+// Class with methods just for find info and data
 
+    /**
+     *
+     * @param email - Email of target User
+     * @return - List<Account> of Accounts
+     */
     public static List<Account> findAccountsByUserEmail(String email) {
         List<Account> accountsList = new ArrayList<>();
 

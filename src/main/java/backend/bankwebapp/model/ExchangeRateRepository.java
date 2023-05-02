@@ -16,6 +16,7 @@ import java.util.List;
 
 @Repository
 public class ExchangeRateRepository {
+// Class with methods just for find info and data
 
     /**
      *

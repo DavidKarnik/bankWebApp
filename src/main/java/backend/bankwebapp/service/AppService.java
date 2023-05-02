@@ -53,41 +53,6 @@ public class AppService {
     }
 
     /**
-     * Method will write into JSON file in accounts array new value type:amount
-     * "accounts":["type:amount"]
-     *
-     * @param email  - email of the user
-     * @param type   - type of new account (USD, CZK, etc.)
-     * @param amount - amount of money on the account
-     * @throws IOException - file not found/ can not open
-     */
-    public static void openMoneyAccount(String email, String type, String amount) throws IOException {
-        // Read the contents of the log.json file into a string
-        String contents = getContentOfJSON();
-        // Parse the contents into a JSONObject
-        JSONObject json = new JSONObject(contents);
-        // Get the "users" array
-        JSONArray users = json.getJSONArray("users");
-
-        // Find the user with the matching email
-        for (int i = 0; i < users.length(); i++) {
-            JSONObject user = users.getJSONObject(i);
-            if (user.getString("email").equals(email)) {
-                // Get the "accounts" array for the matching user
-                JSONArray accounts = user.getJSONArray("accounts");
-                // Add the new account entry to the accounts array
-                accounts.put(type + ":" + amount);
-                break;
-            }
-        }
-        // Write the modified JSON back to the log.json file
-        FileWriter file = new FileWriter("src/main/resources/log.json");
-        file.write(json.toString());
-        file.flush();
-        file.close();
-    }
-
-    /**
      * Function will add money to the specific money account of the email account
      *
      * @param email  - id for account of user
@@ -133,6 +98,10 @@ public class AppService {
                         file.write(json.toString());
                         file.flush();
                         file.close();
+
+                        // Add Transaction info
+
+
                         return true;
                     }
                 }
@@ -233,6 +202,41 @@ public class AppService {
             }
         }
         return 0;
+    }
+
+    /**
+     * Method will write into JSON file in accounts array new value type:amount
+     * "accounts":["type:amount"]
+     *
+     * @param email  - email of the user
+     * @param type   - type of new account (USD, CZK, etc.)
+     * @param amount - amount of money on the account
+     * @throws IOException - file not found/ can not open
+     */
+    public static void openMoneyAccount(String email, String type, String amount) throws IOException {
+        // Read the contents of the log.json file into a string
+        String contents = getContentOfJSON();
+        // Parse the contents into a JSONObject
+        JSONObject json = new JSONObject(contents);
+        // Get the "users" array
+        JSONArray users = json.getJSONArray("users");
+
+        // Find the user with the matching email
+        for (int i = 0; i < users.length(); i++) {
+            JSONObject user = users.getJSONObject(i);
+            if (user.getString("email").equals(email)) {
+                // Get the "accounts" array for the matching user
+                JSONArray accounts = user.getJSONArray("accounts");
+                // Add the new account entry to the accounts array
+                accounts.put(type + ":" + amount);
+                break;
+            }
+        }
+        // Write the modified JSON back to the log.json file
+        FileWriter file = new FileWriter("src/main/resources/log.json");
+        file.write(json.toString());
+        file.flush();
+        file.close();
     }
 
     /**

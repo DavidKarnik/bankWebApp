@@ -1,0 +1,15 @@
+{
+  "users": [
+    {
+      "email": "admin@mail.com",
+      "transactions": [
+        "2023-05-01 18:07:19|USD|Deposit|1000"
+      ]
+    },
+    {
+      "email": "user@mail.com",
+      "transactions": [
+      ]
+    }
+  ]
+}

@@ -16,6 +16,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class UserRepository {
+// Class with methods just for find info and data
 
 //    File file = new File("log.json");
 
