@@ -3,26 +3,28 @@ package backend.bankwebapp.controller;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.boot.web.servlet.error.ErrorController;
-import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@ControllerAdvice
+@Controller
 public class CustomErrorController implements ErrorController {
 
     @RequestMapping("/error")
-    public String handle404Error(HttpServletRequest request) {
+    public String handleError(HttpServletRequest request) {
         Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
+
         if (status != null) {
-            String statusCode = status.toString();
-            if (statusCode.equals("404")) {
-                return "error404";
+            Integer statusCode = Integer.valueOf(status.toString());
+
+            if(statusCode == HttpStatus.NOT_FOUND.value()) {
+                return "/error/error404";
             }
-//            else if (statusCode.equals("400")) {
-//                return "error400";  // accessDenied handles WebSecurityConfig
-            // return "accessDenied";
-//            }
+            else if(statusCode == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
+                return "/error/error500";
+            }
         }
-        return "defaultError"; // default error page
+        return "index";
     }
 }
 

@@ -86,9 +86,9 @@ public class AppController {
         List<Account> listAccounts = AccountRepository.findAccountsByUserEmail(user.getEmail());
         model.addAttribute("listAccounts", listAccounts);
 
-        model.addAttribute("show", true);
+        model.addAttribute("show", false);
         model.addAttribute("success", successAction);
-        model.addAttribute("message", "/deposit");
+//        model.addAttribute("message", "/deposit");
 
         List<ExchangeRate> listExchangeRates = ExchangeRateRepository.getListOfExchangeRates();
         model.addAttribute("listExchangeRates", listExchangeRates);
