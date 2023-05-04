@@ -138,11 +138,22 @@ public class ExchangeRateRepository {
         return output;
     }
 
+    /**
+     * Get Time of Refresh (Valid time) for Exchange Rates
+     * @return - String of time, eg. 28.04.2023
+     */
+    public static String getRefreshedTimeOfRates() {
+        String[] edit = readExchangeRateFile().split("\n");
+        String output = edit[1].split(" ")[0]; // 28.04.2023 #83
+        return (output + " 15:00 (UTC+2 Europe/Prague)"); // eg. 28.04.2023 + ...
+    }
+
     //    Testing
     public static void main(String[] args) {
         // Press Alt+Enter with your caret at the highlighted text to see how
         // IntelliJ IDEA suggests fixing it.
         System.out.printf("Hello and welcome!\n");
+        System.out.println("-------------------\n");
 
 //        String htmlContent = getHtmlContent("https://www.cnb.cz/cs/financni-trhy/devizovy-trh/kurzy-devizoveho-trhu/kurzy-devizoveho-trhu/denni_kurz.txt");
 //        System.out.println(htmlContent);
@@ -150,8 +161,9 @@ public class ExchangeRateRepository {
 //        char verticalLine = '\u007c'; // '|'
 //        System.out.println(String.valueOf(verticalLine));
 
-        System.out.println("-------------------\n");
-        printArray(getExchangeRateStringArray());
+//        printArray(getExchangeRateStringArray());
+
+        System.out.println(getRefreshedTimeOfRates());
 
     }
 }

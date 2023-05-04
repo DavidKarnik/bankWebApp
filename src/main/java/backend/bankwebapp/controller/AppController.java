@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
+import static backend.bankwebapp.model.ExchangeRateRepository.getRefreshedTimeOfRates;
 import static backend.bankwebapp.service.ExchangeRateService.doExchangeRateCount;
 
 // TODO double amount (balance) instead of int !
@@ -61,6 +62,8 @@ public class AppController {
 
         List<Transaction> listTransactions = TransactionRepository.getTransactionsOfUserByEmail(user.getEmail());
         model.addAttribute("listTransactions", listTransactions);
+
+        model.addAttribute("timeRefresh", getRefreshedTimeOfRates());
         return "myForm";
     }
 
@@ -92,6 +95,8 @@ public class AppController {
 
         List<Transaction> listTransactions = TransactionRepository.getTransactionsOfUserByEmail(user.getEmail());
         model.addAttribute("listTransactions", listTransactions);
+
+        model.addAttribute("timeRefresh", getRefreshedTimeOfRates());
         return "myForm";
     }
 
@@ -137,6 +142,8 @@ public class AppController {
 
         List<Transaction> listTransactions = TransactionRepository.getTransactionsOfUserByEmail(user.getEmail());
         model.addAttribute("listTransactions", listTransactions);
+
+        model.addAttribute("timeRefresh", getRefreshedTimeOfRates());
         // Return the name of the view to render
         // return the SAME html page !
         return "myForm";
@@ -196,6 +203,8 @@ public class AppController {
 
         List<Transaction> listTransactions = TransactionRepository.getTransactionsOfUserByEmail(user.getEmail());
         model.addAttribute("listTransactions", listTransactions);
+
+        model.addAttribute("timeRefresh", getRefreshedTimeOfRates());
         // Return the name of the view to render
         // return the SAME html page !
         return "myForm";
@@ -242,6 +251,8 @@ public class AppController {
 
         List<Transaction> listTransactions = TransactionRepository.getTransactionsOfUserByEmail(user.getEmail());
         model.addAttribute("listTransactions", listTransactions);
+
+        model.addAttribute("timeRefresh", getRefreshedTimeOfRates());
         // Return the name of the view to render
         // return the SAME html page !
         return "myForm";
@@ -284,6 +295,8 @@ public class AppController {
 
         List<Transaction> listTransactions = TransactionRepository.getTransactionsOfUserByEmail(user.getEmail());
         model.addAttribute("listTransactions", listTransactions);
+
+        model.addAttribute("timeRefresh", getRefreshedTimeOfRates());
         return "myForm";
     }
 

@@ -73,7 +73,7 @@ public class ExchangeRateService {
 
 //        refreshFileExchangeRate();
 
-        System.out.println(doExchangeRateCount("USD", 1000));
+//        System.out.println(doExchangeRateCount("USD", 1000));
 
     }
 }
