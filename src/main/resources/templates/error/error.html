@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Error Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous">
+</head>
+<body>
+
+<header>
+    <h1 class="bank-name">Default Error Page</h1>
+    <div class="logoutSection">
+    </div>
+</header>
+
+<div class="main">
+    <h1>Default Error Page</h1>
+    <h3>Sorry, something went wrong</h3>
+    <button onclick="location.href='/'">Go to Home Page</button>
+</div>
+
+</body>
+
+<style>
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #003366;
+        color: #ffffff;
+        padding: 20px;
+    }
+
+    body {
+        margin: 0;
+    }
+
+    .main {
+        margin: 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .bank-name {
+        font-size: 36px;
+        margin: 0;
+    }
+
+    .logoutSection {
+        text-align: right;
+    }
+    button {
+        margin-top: 10px;
+        padding: 10px;
+    }
+</style>
+
+</html>
