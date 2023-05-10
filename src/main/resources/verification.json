@@ -1,12 +1,1 @@
-{
-  "users": [
-    {
-      "email": "admin@mail.com",
-      "verificationCode": ""
-    },
-    {
-      "email": "user@mail.com",
-      "verificationCode": ""
-    }
-  ]
-}
+{"users":[{"email":"admin@mail.com","verificationCode":"583c94a7-3067"},{"email":"user@mail.com","verificationCode":""}]}

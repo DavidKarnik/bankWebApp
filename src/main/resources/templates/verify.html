@@ -22,7 +22,7 @@
 <div class="mainContent">
     <h1>Verification code required</h1>
     <p class="infoText">Verification code sent to your email address</p>
-    <form class="myForm" method="post" action="/verifyCode">
+    <form class="myForm" method="post" th:action="@{/verifyCode}">
         <label for="code">Verification code:</label>
         <input type="text" id="code" name="code" required>
         <input type="submit" value="Verify">
