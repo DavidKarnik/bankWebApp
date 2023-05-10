@@ -14,7 +14,6 @@ import java.util.List;
 import static backend.bankwebapp.model.ExchangeRateRepository.getRefreshedTimeOfRates;
 import static backend.bankwebapp.service.ExchangeRateService.doExchangeRateCount;
 
-// TODO double amount (balance) instead of int !
 @Controller
 //@RequestMapping("/api") // prefix need to add to the WebSecurityConfig.java
 public class AppController {

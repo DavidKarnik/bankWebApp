@@ -1,0 +1,12 @@
+{
+  "users": [
+    {
+      "email": "admin@mail.com",
+      "verificationCode": ""
+    },
+    {
+      "email": "user@mail.com",
+      "verificationCode": ""
+    }
+  ]
+}

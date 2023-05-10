@@ -15,17 +15,18 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class WebSecurityConfig {
     @Bean
-    public UserDetailsService userDetailsService(){
+    public UserDetailsService userDetailsService() {
         return new CustomUserDetailsService();
     }
 
     @Bean
-    public BCryptPasswordEncoder passwordEncoder(){
+    public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
 
     }
+
     @Bean
-    public DaoAuthenticationProvider authenticationProvider(){
+    public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(userDetailsService());
         authProvider.setPasswordEncoder(passwordEncoder());
@@ -33,27 +34,25 @@ public class WebSecurityConfig {
         return authProvider;
 
     }
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .requestMatchers("/users"
-                        , "/singleAccount"
-                        , "/myForm"
-                        )
-                .authenticated()
-                .anyRequest().permitAll()
+                    .requestMatchers("/users"
+                            , "/singleAccount"
+                            , "/myForm"
+                    )
+                    .authenticated()
+                    .anyRequest().permitAll()
                 .and()
-                .formLogin()
-                .usernameParameter("email")
-                .defaultSuccessUrl("/myForm")
-                .permitAll()
+                    .formLogin()
+                    .usernameParameter("email")
+                    .defaultSuccessUrl("/myForm")
+                    .permitAll()
                 .and()
-                .logout()
-                .logoutSuccessUrl("/")
-                .permitAll()
-                .and()
-                .exceptionHandling()
-                .accessDeniedPage("/accessDenied.html");
+                    .logout()
+                    .logoutSuccessUrl("/")
+                    .permitAll();
 
         return http.build();
     }
