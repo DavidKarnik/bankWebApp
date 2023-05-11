@@ -1,1 +1,1 @@
-{"users":[{"email":"admin@mail.com","verificationCode":"583c94a7-3067"},{"email":"user@mail.com","verificationCode":""}]}
+{"users":[{"isActive":"false","email":"admin@mail.com","verificationCode":"59593fe7-783e"},{"isActive":"false","email":"user@mail.com","verificationCode":""},{"isActive":"false","email":"david.karnik@seznam.cz","verificationCode":""}]}

@@ -10,10 +10,15 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
+
+//    @Autowired
+//    AuthenticationSuccessHandler successHandler;
+
     @Bean
     public UserDetailsService userDetailsService() {
         return new CustomUserDetailsService();
@@ -26,13 +31,17 @@ public class WebSecurityConfig {
     }
 
     @Bean
+    public AuthenticationSuccessHandler customAuthenticationSuccessHandler() {
+        return new CustomSuccessHandler();
+    }
+
+    @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(userDetailsService());
         authProvider.setPasswordEncoder(passwordEncoder());
 
         return authProvider;
-
     }
 
     @Bean
@@ -41,13 +50,15 @@ public class WebSecurityConfig {
                     .requestMatchers("/users"
                             , "/singleAccount"
                             , "/myForm"
-                    )
-                    .authenticated()
+                            , "/verify"
+                    ).fullyAuthenticated()
+                    //.authenticated()
                     .anyRequest().permitAll()
                 .and()
                     .formLogin()
                     .usernameParameter("email")
-                    .defaultSuccessUrl("/myForm")
+//                    .defaultSuccessUrl("/verify")
+                    .successHandler(customAuthenticationSuccessHandler())
                     .permitAll()
                 .and()
                     .logout()

@@ -19,10 +19,16 @@
     </div>
 </header>
 
+<div th:if="${errorMessage}">
+    <script th:inline="javascript">
+        alert([[${errorMessage}]]);
+    </script>
+</div>
+
 <div class="mainContent">
     <h1>Verification code required</h1>
     <p class="infoText">Verification code sent to your email address</p>
-    <form class="myForm" method="post" th:action="@{/verifyCode}">
+    <form class="myForm" method="post" th:action="@{/verify}">
         <label for="code">Verification code:</label>
         <input type="text" id="code" name="code" required>
         <input type="submit" value="Verify">
