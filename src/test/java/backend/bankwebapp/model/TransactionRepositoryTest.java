@@ -30,7 +30,7 @@ public class TransactionRepositoryTest {
         if(!transactions.isEmpty()){
             // Check the properties of the returned transactions if it exists
             for (Transaction transaction : transactions) {
-                Assertions.assertThat(transaction.getTimestamp()).isNotEmpty();
+                Assertions.assertThat(transaction.getTimeStamp()).isNotEmpty();
                 Assertions.assertThat(transaction.getAccountType()).isNotEmpty();
                 Assertions.assertThat(transaction.getAction()).isNotEmpty();
                 Assertions.assertThat(transaction.getFinances()).isNotEmpty();

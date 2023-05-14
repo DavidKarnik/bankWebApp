@@ -43,24 +43,18 @@ public class VerificationController {
     @Autowired
     private UserRepository userRepo;
 
-    @GetMapping("/verify")
-    public String verify(Authentication authentication, HttpSession session) throws IOException {
-//        String email = authentication.getName();
+    public VerificationController(VerificationService verificationService) {
+        this.verificationService = verificationService;
+    }
 
+    @GetMapping("/verify")
+    public String verify(Authentication authentication, HttpSession session) {
         // Check if the verification email has already been sent for this user
         Boolean emailSent = (Boolean) session.getAttribute("emailSent");
         if (emailSent != null && emailSent) {
             // Verification email has already been sent, so skip sending it again (when refresh)
             return "verify";
         }
-
-        // Generate a verification code
-//        String code = verificationService.generateCode();
-//        // save code to verification.json
-//        verificationService.addVerificationCodeToUserByEmail(email, code);
-//
-//        // TODO edit for real given email !!!
-//        mailService.sendEmail("david.karnik@seznam.cz", code);
 
         // Set the emailSent flag in the session to indicate that the verification email has been sent
         session.setAttribute("emailSent", true);
@@ -78,8 +72,8 @@ public class VerificationController {
         }
 
         String email = authentication.getName();
-        System.out.println(code);
-        System.out.println(email);
+//        System.out.println(code);
+//        System.out.println(email);
         if (verificationService.isCodeValid(email, code)) {
             System.out.println("Verified Code - Success !!");
             verificationService.deleteVerificationCodeToUserByEmail(email);

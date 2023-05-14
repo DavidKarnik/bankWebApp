@@ -1,1 +1,19 @@
-{"users":[{"isActive":"false","email":"admin@mail.com","verificationCode":"59593fe7-783e"},{"isActive":"false","email":"user@mail.com","verificationCode":""},{"isActive":"false","email":"david.karnik@seznam.cz","verificationCode":"6c446931-2a6c"}]}
+{
+  "users": [
+    {
+      "isActive": "false",
+      "email": "admin@mail.com",
+      "verificationCode": "59593fe7-783e"
+    },
+    {
+      "isActive": "false",
+      "email": "user@mail.com",
+      "verificationCode": ""
+    },
+    {
+      "isActive": "false",
+      "email": "david.karnik@seznam.cz",
+      "verificationCode": ""
+    }
+  ]
+}

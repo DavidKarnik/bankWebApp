@@ -27,7 +27,7 @@ public class Transaction {
                 '}';
     }
 
-    public String getTimestamp() {
+    public String getTimeStamp() {
         return timeStamp;
     }
 }

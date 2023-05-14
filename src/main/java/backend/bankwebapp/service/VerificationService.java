@@ -159,9 +159,9 @@ public class VerificationService {
         return false; // User do not validate himself
     }
 
-    public static void main(String[] args) throws IOException {
-//        System.out.println(generateCode());
-//        System.out.println(addVerificationCodeToUserByEmail("admin@mail.com",generateCode()));
-//        deleteVerificationCodeToUserByEmail("admin@mail.com");
-    }
+//    public static void main(String[] args) throws IOException {
+////        System.out.println(generateCode());
+////        System.out.println(addVerificationCodeToUserByEmail("admin@mail.com",generateCode()));
+////        deleteVerificationCodeToUserByEmail("admin@mail.com");
+//    }
 }

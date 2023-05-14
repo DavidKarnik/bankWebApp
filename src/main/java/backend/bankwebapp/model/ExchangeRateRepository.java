@@ -149,21 +149,21 @@ public class ExchangeRateRepository {
     }
 
     //    Testing
-    public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!\n");
-        System.out.println("-------------------\n");
-
-//        String htmlContent = getHtmlContent("https://www.cnb.cz/cs/financni-trhy/devizovy-trh/kurzy-devizoveho-trhu/kurzy-devizoveho-trhu/denni_kurz.txt");
-//        System.out.println(htmlContent);
-
-//        char verticalLine = '\u007c'; // '|'
-//        System.out.println(String.valueOf(verticalLine));
-
-//        printArray(getExchangeRateStringArray());
-
-        System.out.println(getRefreshedTimeOfRates());
-
-    }
+//    public static void main(String[] args) {
+//        // Press Alt+Enter with your caret at the highlighted text to see how
+//        // IntelliJ IDEA suggests fixing it.
+//        System.out.printf("Hello and welcome!\n");
+//        System.out.println("-------------------\n");
+//
+////        String htmlContent = getHtmlContent("https://www.cnb.cz/cs/financni-trhy/devizovy-trh/kurzy-devizoveho-trhu/kurzy-devizoveho-trhu/denni_kurz.txt");
+////        System.out.println(htmlContent);
+//
+////        char verticalLine = '\u007c'; // '|'
+////        System.out.println(String.valueOf(verticalLine));
+//
+////        printArray(getExchangeRateStringArray());
+//
+//        System.out.println(getRefreshedTimeOfRates());
+//
+//    }
 }
