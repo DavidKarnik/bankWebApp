@@ -37,12 +37,12 @@ public class ExchangeRateService {
             FileWriter writer = new FileWriter("src/main/resources/exchangeRate.txt", false); // ,false for override whole file as new one
             writer.write(timestamp + "\n");
             writer.write(htmlContent + "\n");
-            writer.close()
+            writer.close();
             return true;
         } catch (IOException e) {
             // Handle the exception
         }
-        return false
+        return false;
     }
 
 
