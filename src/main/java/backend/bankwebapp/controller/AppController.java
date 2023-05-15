@@ -1,6 +1,5 @@
 package backend.bankwebapp.controller;
 
-
 import backend.bankwebapp.model.*;
 import backend.bankwebapp.service.AppService;
 import org.springframework.security.core.Authentication;

@@ -75,7 +75,7 @@ public class VerificationControllerTest {
     }
 
     @Test
-    public void testVerify() throws Exception {
+    public void itShouldChangeSessionAttributeWhenGetMappingVerify() throws Exception {
         // Create a mock session
 //        MockHttpSession session = new MockHttpSession();
 
@@ -97,21 +97,21 @@ public class VerificationControllerTest {
 
     @Test
     void testVerifyCode_ValidCode() throws IOException {
+        // given
         String email = "admin@mail.com";
         String code = "xxxxx"; // 59593fe7-783e
 
         when(verificationService.isCodeValid(eq(email), eq(code))).thenReturn(true);
 
         Authentication authentication = new TestingAuthenticationToken(email, null, "ROLE_ADMIN");
-
         // Set the authentication context
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
 
-        // Act
-        String result = underTest.verifyCode(code, redirectAttrs, model);
+        // when
+        String result = underTest.verifyCode(code, redirectAttrs, model); // @PostMapping("/verify")
 
-        // Assert
+        // then
         assertThat(result).isEqualTo("redirect:/myForm");
         verify(verificationService).deleteVerificationCodeToUserByEmail(eq(email));
         verify(redirectAttrs).addAttribute(eq("method"), eq("GET"));
