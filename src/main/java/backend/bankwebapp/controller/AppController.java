@@ -1,6 +1,5 @@
 package backend.bankwebapp.controller;
 
-
 import backend.bankwebapp.model.*;
 import backend.bankwebapp.service.AppService;
 import org.springframework.security.core.Authentication;
@@ -12,9 +11,7 @@ import java.io.IOException;
 import java.util.List;
 
 import static backend.bankwebapp.model.ExchangeRateRepository.getRefreshedTimeOfRates;
-import static backend.bankwebapp.service.ExchangeRateService.doExchangeRateCount;
 
-// TODO double amount (balance) instead of int !
 @Controller
 //@RequestMapping("/api") // prefix need to add to the WebSecurityConfig.java
 public class AppController {
@@ -26,29 +23,32 @@ public class AppController {
         return "index";
     }
 
-    @GetMapping("/users")
-    public String viewUsersList(Model model) throws IOException {
-//        List<User> listUsers = repo.findAll();
-        List<User> listUsers = UserRepository.findAll();
-        model.addAttribute("listUsers", listUsers);
-        return "users";
-    }
-
-    @GetMapping("/singleAccount")
-    public String viewUsersList(Model model, Authentication authentication) throws IOException {
-        String email = authentication.getName();
-        // use the email parameter to filter the list of users
-        User user = UserRepository.findByEmail(email);
-        model.addAttribute("user", user);
-        return "singleAccount";
-    }
-
     //
-    // FORM --------------------------------------------------------------------------------------
+    // MAIN FORM --------------------------------------------------------------------------------------
     //
 
     @GetMapping("/myForm")
     public String myForm(Model model, Authentication authentication) {
+        String email = authentication.getName();
+        User user = UserRepository.findByEmail(email);
+        model.addAttribute("user", user);
+        List<Account> listAccounts = AccountRepository.findAccountsByUserEmail(user.getEmail());
+        model.addAttribute("listAccounts", listAccounts);
+
+        model.addAttribute("show", false);
+
+        List<ExchangeRate> listExchangeRates = ExchangeRateRepository.getListOfExchangeRates();
+        model.addAttribute("listExchangeRates", listExchangeRates);
+
+        List<Transaction> listTransactions = TransactionRepository.getTransactionsOfUserByEmail(user.getEmail());
+        model.addAttribute("listTransactions", listTransactions);
+
+        model.addAttribute("timeRefresh", getRefreshedTimeOfRates());
+        return "myForm";
+    }
+
+    @PostMapping("/myForm")
+    public String myFormPostHandler(Model model, Authentication authentication) {
         String email = authentication.getName();
         User user = UserRepository.findByEmail(email);
         model.addAttribute("user", user);

@@ -61,9 +61,4 @@ public class TransactionRepository {
         }
         return null; // Return null if Transaction is not found
     }
-
-
-    public static void main(String[] args) {
-        getTransactionsOfUserByEmail("admin@mail.com");
-    }
 }

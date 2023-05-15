@@ -39,9 +39,7 @@ public class TransactionService {
                 JSONArray transactions = user.getJSONArray("transactions");
 
                 // Get the current date and time to include in the output file name
-                LocalDateTime now = LocalDateTime.now();
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-                String timeStamp = now.format(formatter);
+                String timeStamp = getCurrentTimeStamp();
 
                 transactions.put(timeStamp + "|" + accountType + "|" + action + "|" + finances); // add data
 
@@ -56,11 +54,18 @@ public class TransactionService {
         return false; // User not found
     }
 
-    public static void main(String[] args) throws IOException {
-//        LocalDateTime now = LocalDateTime.now();
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-//        String timestamp = now.format(formatter);
-
-        System.out.println(addTransactionToUserByEmail("admin@mail.com", "CZK", "Deposit", "99"));
+    public static String getCurrentTimeStamp() {
+        // Get the current date and time to include in the output file name
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        return now.format(formatter);
     }
+
+//    public static void main(String[] args) throws IOException {
+////        LocalDateTime now = LocalDateTime.now();
+////        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+////        String timestamp = now.format(formatter);
+//
+//        System.out.println(addTransactionToUserByEmail("admin@mail.com", "CZK", "Deposit", "99"));
+//    }
 }

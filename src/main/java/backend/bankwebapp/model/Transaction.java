@@ -26,4 +26,8 @@ public class Transaction {
                 ", finances='" + finances + '\'' +
                 '}';
     }
+
+    public String getTimeStamp() {
+        return timeStamp;
+    }
 }
