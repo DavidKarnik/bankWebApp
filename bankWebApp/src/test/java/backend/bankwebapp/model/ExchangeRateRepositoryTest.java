@@ -73,10 +73,10 @@ class ExchangeRateRepositoryTest {
         // test just first 4 column that are not changing
         // Austrálie|dolar|1|AUD|14,481
         String[][] compare = {
-                {"Austrálie", "dolar", "1", "AUD"},
-                {"Brazílie", "real", "1", "BRL"},
+                {"Austr\u00E1lie", "dolar", "1", "AUD"},
+                {"Braz\u00EDlie", "real", "1", "BRL"},
                 {"Bulharsko", "lev", "1", "BGN"},
-                {"Čína", "žen-min-pi", "1", "CNY"}
+                {"\u010C\u00EDna", "\u017Een-min-pi", "1", "CNY"}
                 // and so on ...
         };
 
@@ -86,16 +86,7 @@ class ExchangeRateRepositoryTest {
         // then
         for (int i = 0; i < compare.length; i++) {
             for (int j = 0; j < compare[i].length; j++) {
-                String expected = compare[i][j];
-                String actual = result[i][j];
-
-                // Convert strings to byte arrays using UTF-8 encoding
-                byte[] expectedBytes = expected.getBytes(StandardCharsets.UTF_8);
-                byte[] actualBytes = actual.getBytes(StandardCharsets.UTF_8);
-
-                // Compare byte arrays
-                boolean isEqual = Arrays.equals(expectedBytes, actualBytes);
-                assertThat(isEqual).isTrue();
+                assertThat(compare[i][j]).isEqualTo(result[i][j]);
             }
         }
     }
