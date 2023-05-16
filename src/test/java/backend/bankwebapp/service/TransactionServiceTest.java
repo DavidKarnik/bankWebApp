@@ -6,6 +6,7 @@ import org.assertj.core.api.Assertions;
 import org.json.JSONException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.core.io.ClassPathResource;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -27,7 +28,7 @@ public class TransactionServiceTest {
         String testEmail = "admin@mail.com";
         String testAccountType = "CZK";
         String testAction = "Deposit";
-        String testFinances = "99";
+        String testFinances = "123";
 
         // when
         boolean result = transactionService.addTransactionToUserByEmail(testEmail, testAccountType, testAction, testFinances);
@@ -69,7 +70,9 @@ public class TransactionServiceTest {
     }
 
     private JsonObject getJsonObjectFromTransactionsFile() throws IOException, JSONException {
-        FileReader reader = new FileReader("src/main/resources/transactions.json");
+//        FileReader reader = new FileReader("src/main/resources/transactions.json");
+        ClassPathResource resource = new ClassPathResource("transactions.json");
+        FileReader reader = new FileReader(resource.getFile().getPath());
         StringBuilder stringBuilder = new StringBuilder();
         int character;
         while ((character = reader.read()) != -1) {

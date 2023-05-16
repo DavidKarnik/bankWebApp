@@ -37,7 +37,7 @@ public class ExchangeRateService {
             // Write the htmlContent to a file
             // ,false for override whole file as new one
 //            FileWriter writer = new FileWriter("src/main/resources/exchangeRate.txt", false);
-            ClassPathResource resource = new ClassPathResource("exchangeRate.json");
+            ClassPathResource resource = new ClassPathResource("exchangeRate.txt");
             FileWriter file = new FileWriter(resource.getFile().getPath(),false);
             file.write(timestamp + "\n");
             file.write(htmlContent + "\n");
