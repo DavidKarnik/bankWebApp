@@ -1,0 +1,35 @@
+2023-05-16 18:32:23
+16.05.2023 #93
+zemì|mìna|množství|kód|kurz
+Austrálie|dolar|1|AUD|14,520
+Brazílie|real|1|BRL|4,438
+Bulharsko|lev|1|BGN|12,105
+Èína|žen-min-pi|1|CNY|3,124
+Dánsko|koruna|1|DKK|3,179
+EMU|euro|1|EUR|23,675
+Filipíny|peso|100|PHP|38,802
+Hongkong|dolar|1|HKD|2,776
+Indie|rupie|100|INR|26,463
+Indonesie|rupie|1000|IDR|1,468
+Island|koruna|100|ISK|15,689
+Izrael|nový šekel|1|ILS|5,941
+Japonsko|jen|100|JPY|16,007
+Jižní Afrika|rand|1|ZAR|1,140
+Kanada|dolar|1|CAD|16,167
+Korejská republika|won|100|KRW|1,623
+Maïarsko|forint|100|HUF|6,411
+Malajsie|ringgit|1|MYR|4,836
+Mexiko|peso|1|MXN|1,247
+MMF|ZPÈ|1|XDR|29,214
+Norsko|koruna|1|NOK|2,040
+Nový Zéland|dolar|1|NZD|13,584
+Polsko|zlotý|1|PLN|5,277
+Rumunsko|leu|1|RON|4,784
+Singapur|dolar|1|SGD|16,277
+Švédsko|koruna|1|SEK|2,099
+Švýcarsko|frank|1|CHF|24,332
+Thajsko|baht|100|THB|64,045
+Turecko|lira|1|TRY|1,104
+USA|dolar|1|USD|21,758
+Velká Británie|libra|1|GBP|27,230
+
