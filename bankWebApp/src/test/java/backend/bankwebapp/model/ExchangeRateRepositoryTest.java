@@ -3,13 +3,16 @@ package backend.bankwebapp.model;
 import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.test.context.TestPropertySource;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@TestPropertySource(properties = "file.encoding=UTF-8")
 class ExchangeRateRepositoryTest {
 
     private ExchangeRateRepository underTest;
@@ -33,7 +36,7 @@ class ExchangeRateRepositoryTest {
         assertThat(exchangeRates.get(0).getAmount()).isEqualTo("1");
 //        assertThat(exchangeRates.get(0).getExchangeRate()).isEqualTo("14,228");
 
-        assertThat(exchangeRates.get(1).getCountry()).isEqualTo("Brazílie");
+        assertThat(exchangeRates.get(1).getCountry()).isEqualTo("Brazílie", StandardCharsets.UTF_8);
         assertThat(exchangeRates.get(1).getCurrency()).isEqualTo("real");
         assertThat(exchangeRates.get(1).getAmount()).isEqualTo("1");
     }
@@ -83,7 +86,7 @@ class ExchangeRateRepositoryTest {
         // then
         for (int i = 0; i < compare.length; i++) {
             for (int j = 0; j < compare[i].length; j++) {
-                assertThat(compare[i][j]).isEqualTo(result[i][j]);
+                assertThat(compare[i][j]).isEqualTo(result[i][j], StandardCharsets.UTF_8);
             }
         }
     }
