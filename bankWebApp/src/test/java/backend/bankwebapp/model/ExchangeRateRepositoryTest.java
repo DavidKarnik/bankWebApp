@@ -86,7 +86,16 @@ class ExchangeRateRepositoryTest {
         // then
         for (int i = 0; i < compare.length; i++) {
             for (int j = 0; j < compare[i].length; j++) {
-                assertThat(compare[i][j]).isEqualTo(result[i][j], StandardCharsets.UTF_8);
+                String expected = compare[i][j];
+                String actual = result[i][j];
+
+                // Convert strings to byte arrays using UTF-8 encoding
+                byte[] expectedBytes = expected.getBytes(StandardCharsets.UTF_8);
+                byte[] actualBytes = actual.getBytes(StandardCharsets.UTF_8);
+
+                // Compare byte arrays
+                boolean isEqual = Arrays.equals(expectedBytes, actualBytes);
+                assertThat(isEqual).isTrue();
             }
         }
     }
