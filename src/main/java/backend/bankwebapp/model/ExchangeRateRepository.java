@@ -6,11 +6,12 @@ import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
 import org.apache.hc.client5.http.impl.classic.HttpClients;
 import org.apache.hc.core5.http.ParseException;
 import org.apache.hc.core5.http.io.entity.EntityUtils;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Repository;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +20,6 @@ public class ExchangeRateRepository {
 // Class with methods just for find info and data
 
     /**
-     *
      * @return - List<ExchangeRate> getListOfExchangeRates
      */
     public static List<ExchangeRate> getListOfExchangeRates() {
@@ -34,7 +34,7 @@ public class ExchangeRateRepository {
                     text[i][2], //amount
                     text[i][3], //code
                     text[i][4] //exchangeRate
-                    );
+            );
             listExchangeRates.add(exRate);
         }
         return listExchangeRates;
@@ -48,11 +48,17 @@ public class ExchangeRateRepository {
     public static String readExchangeRateFile() {
         StringBuilder contentBuilder = new StringBuilder();
 
-        try (BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/exchangeRate.txt"))) {
+        try {
+            // absolute path will not work in .jar file, because it works only for IDE environment, so use relative like that
+            ClassPathResource resource = new ClassPathResource("exchangeRate.txt");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(resource.getInputStream()));
+
             String line;
             while ((line = reader.readLine()) != null) {
                 contentBuilder.append(line).append("\n");
             }
+
+            reader.close();
         } catch (IOException e) {
             // Handle the exception
         }
@@ -128,7 +134,6 @@ public class ExchangeRateRepository {
     }
 
     /**
-     *
      * @param currencyCode - Code of Currency (eg. "USD", "CZK")
      * @return - eg. "USD 1x 21,144"
      */
@@ -140,6 +145,7 @@ public class ExchangeRateRepository {
 
     /**
      * Get Time of Refresh (Valid time) for Exchange Rates
+     *
      * @return - String of time, eg. 28.04.2023
      */
     public static String getRefreshedTimeOfRates() {
@@ -163,7 +169,8 @@ public class ExchangeRateRepository {
 //
 ////        printArray(getExchangeRateStringArray());
 //
-//        System.out.println(getRefreshedTimeOfRates());
+////        System.out.println(getRefreshedTimeOfRates());
 //
+//        System.out.println(readExchangeRateFile());
 //    }
 }

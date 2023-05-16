@@ -3,11 +3,14 @@ package backend.bankwebapp.model;
 
 //import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.FileReader;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Repository;
 
 
@@ -25,7 +28,10 @@ public class UserRepository {
 
         try {
             // Read the log.json file using JSON parser
-            FileReader reader = new FileReader("src/main/resources/log.json");
+//            FileReader reader = new FileReader("src/main/resources/log.json");
+            ClassPathResource resource = new ClassPathResource("log.json");
+            InputStreamReader reader = new InputStreamReader(resource.getInputStream(), StandardCharsets.UTF_8);
+
             JSONParser parser = new JSONParser();
             JSONObject logObject = (JSONObject) parser.parse(reader);
 
@@ -64,7 +70,10 @@ public class UserRepository {
         try {
 //            System.out.println(UserRepository.class.getProtectionDomain().getCodeSource().getLocation().getPath());
             // Read the log.json file using JSON parser
-            FileReader reader = new FileReader("src/main/resources/log.json"); // TARGET root
+//            FileReader reader = new FileReader("src/main/resources/log.json"); // TARGET root
+            ClassPathResource resource = new ClassPathResource("log.json");
+            InputStreamReader reader = new InputStreamReader(resource.getInputStream(), StandardCharsets.UTF_8);
+
             JSONParser parser = new JSONParser();
             JSONObject logObject = (JSONObject) parser.parse(reader);
 

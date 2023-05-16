@@ -1,34 +1,35 @@
-2023-05-15 11:12:06
-12.05.2023 #91
-zemƒõ|mƒõna|mno≈æstv√≠|k√≥d|kurz
-Austr√°lie|dolar|1|AUD|14,481
-Braz√≠lie|real|1|BRL|4,379
-Bulharsko|lev|1|BGN|12,070
-ƒå√≠na|≈æen-min-pi|1|CNY|3,118
-D√°nsko|koruna|1|DKK|3,169
-EMU|euro|1|EUR|23,605
-Filip√≠ny|peso|100|PHP|38,835
-Hongkong|dolar|1|HKD|2,764
-Indie|rupie|100|INR|26,370
-Indonesie|rupie|1000|IDR|1,470
-Island|koruna|100|ISK|15,705
-Izrael|nov√Ω ≈°ekel|1|ILS|5,944
-Japonsko|jen|100|JPY|16,061
-Ji≈æn√≠ Afrika|rand|1|ZAR|1,127
-Kanada|dolar|1|CAD|16,064
-Korejsk√° republika|won|100|KRW|1,622
-Maƒèarsko|forint|100|HUF|6,366
-Malajsie|ringgit|1|MYR|4,840
-Mexiko|peso|1|MXN|1,230
-MMF|ZPƒå|1|XDR|29,191
-Norsko|koruna|1|NOK|2,031
-Nov√Ω Z√©land|dolar|1|NZD|13,490
-Polsko|zlot√Ω|1|PLN|5,208
-Rumunsko|leu|1|RON|4,785
-Singapur|dolar|1|SGD|16,245
-≈†v√©dsko|koruna|1|SEK|2,100
-≈†v√Ωcarsko|frank|1|CHF|24,233
-Thajsko|baht|100|THB|63,785
-Turecko|lira|1|TRY|1,106
-USA|dolar|1|USD|21,678
-Velk√° Brit√°nie|libra|1|GBP|27,128
+2023-05-16 14:11:39
+15.05.2023 #92
+zemÏ|mÏna|mnoûstvÌ|kÛd|kurz
+Austr·lie|dolar|1|AUD|14,489
+BrazÌlie|real|1|BRL|4,412
+Bulharsko|lev|1|BGN|12,048
+»Ìna|ûen-min-pi|1|CNY|3,117
+D·nsko|koruna|1|DKK|3,164
+EMU|euro|1|EUR|23,565
+FilipÌny|peso|100|PHP|38,648
+Hongkong|dolar|1|HKD|2,765
+Indie|rupie|100|INR|26,334
+Indonesie|rupie|1000|IDR|1,464
+Island|koruna|100|ISK|15,616
+Izrael|nov˝ öekel|1|ILS|5,925
+Japonsko|jen|100|JPY|15,909
+JiûnÌ Afrika|rand|1|ZAR|1,134
+Kanada|dolar|1|CAD|16,050
+Korejsk· republika|won|100|KRW|1,622
+MaÔarsko|forint|100|HUF|6,380
+Malajsie|ringgit|1|MYR|4,818
+Mexiko|peso|1|MXN|1,234
+MMF|ZP»|1|XDR|29,147
+Norsko|koruna|1|NOK|2,033
+Nov˝ ZÈland|dolar|1|NZD|13,472
+Polsko|zlot˝|1|PLN|5,228
+Rumunsko|leu|1|RON|4,773
+Singapur|dolar|1|SGD|16,200
+ävÈdsko|koruna|1|SEK|2,087
+äv˝carsko|frank|1|CHF|24,180
+Thajsko|baht|100|THB|64,108
+Turecko|lira|1|TRY|1,102
+USA|dolar|1|USD|21,671
+Velk· Brit·nie|libra|1|GBP|27,103
+

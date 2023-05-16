@@ -1,15 +1,14 @@
 package backend.bankwebapp.service;
 
-import backend.bankwebapp.model.AccountRepository;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.util.FileCopyUtils;
 
 import static backend.bankwebapp.service.ExchangeRateService.doExchangeRateCount;
 import static backend.bankwebapp.service.TransactionService.addTransactionToUserByEmail;
@@ -94,7 +93,8 @@ public class AppService {
                         double newAmount = oldAmount + amount;
                         accounts.put(j, _type + ":" + newAmount);
                         // Write the modified JSON back to the log.json file
-                        FileWriter file = new FileWriter("src/main/resources/log.json");
+                        ClassPathResource resource = new ClassPathResource("log.json");
+                        FileWriter file = new FileWriter(resource.getFile().getPath());
                         file.write(json.toString());
                         file.flush();
                         file.close();
@@ -160,7 +160,8 @@ public class AppService {
                         newAmount = oldAmount - amount;
                         accounts.put(j, _type + ":" + newAmount);
                         // Write the modified JSON back to the log.json file
-                        FileWriter file = new FileWriter("src/main/resources/log.json");
+                        ClassPathResource resource = new ClassPathResource("log.json");
+                        FileWriter file = new FileWriter(resource.getFile().getPath());
                         file.write(json.toString());
                         file.flush();
                         file.close();
@@ -193,7 +194,8 @@ public class AppService {
                         newAmount = oldAmount - realAmount;
                         accounts.put(a, _type + ":" + newAmount);
                         // Write the modified JSON back to the log.json file
-                        FileWriter file = new FileWriter("src/main/resources/log.json");
+                        ClassPathResource resource = new ClassPathResource("log.json");
+                        FileWriter file = new FileWriter(resource.getFile().getPath());
                         file.write(json.toString());
                         file.flush();
                         file.close();
@@ -237,7 +239,8 @@ public class AppService {
             }
         }
         // Write the modified JSON back to the log.json file
-        FileWriter file = new FileWriter("src/main/resources/log.json");
+        ClassPathResource resource = new ClassPathResource("log.json");
+        FileWriter file = new FileWriter(resource.getFile().getPath());
         file.write(json.toString());
         file.flush();
         file.close();
@@ -275,7 +278,8 @@ public class AppService {
                         // account of type found
                         accounts.remove(j);
                         // Write the modified JSON back to the log.json file
-                        FileWriter file = new FileWriter("src/main/resources/log.json");
+                        ClassPathResource resource = new ClassPathResource("log.json");
+                        FileWriter file = new FileWriter(resource.getFile().getPath());
                         file.write(json.toString());
                         file.flush();
                         file.close();
@@ -296,8 +300,17 @@ public class AppService {
      * @return - String content of log.json file
      * @throws IOException - file error
      */
-    private static String getContentOfJSON() throws IOException {
-        return new String(Files.readAllBytes(Paths.get("src/main/resources/log.json")));
+    private static String getContentOfJSON() {
+//        return new String(Files.readAllBytes(Paths.get("src/main/resources/log.json")));
+        try {
+            // need relative path, not absolute
+            ClassPathResource resource = new ClassPathResource("log.json");
+            byte[] fileBytes = FileCopyUtils.copyToByteArray(resource.getInputStream());
+            return new String(fileBytes);
+        } catch (IOException e) {
+            // Handle the exception
+        }
+        return null; // or return an appropriate default value
     }
 
     // user.getAccountsArray() -> ["USD:100", "CZK:234", ...]
@@ -323,30 +336,31 @@ public class AppService {
         return null;
     }
 
-    /**
-     * Test main class
-     */
-    public static void main(String[] args) throws IOException {
-        // ctrl + alt + L -> beatify the code ! :)
-
-//        System.out.println("Try openMoneyAccount()");
-//        AppService.openMoneyAccount("user@mail.com", "USD", "1000");
-
-//        System.out.println("Try hasTheAccountOfType()");
-//        System.out.println(AppService.hasTheAccountOfType("user@mail.com", "USD"));
-
-//        System.out.println("Try addMoneyToAccount()");
-//        System.out.println(AppService.addMoneyToAccount("user@mail.com", "CZK", 1));
-
-//        System.out.println("Try withdrawMoneyFromAccount()");
-//        System.out.println(AppService.withdrawMoneyFromAccount("admin@mail.com", "USD", 11));
-
-//        System.out.println("Try closeMoneyAccount()");
-//        System.out.println(AppService.closeMoneyAccount("admin@mail.com", "USD"));
-
-//        getAccountsFromJSON("user@mail.com");
-
-        AccountRepository.findAccountsByUserEmail("user@mail.com");
-
-    }
+//    /**
+//     * Test main class
+//     */
+//    public static void main(String[] args) throws IOException {
+//        // ctrl + alt + L -> beatify the code ! :)
+//
+////        System.out.println("Try openMoneyAccount()");
+////        AppService.openMoneyAccount("user@mail.com", "USD", "1000");
+//
+////        System.out.println("Try hasTheAccountOfType()");
+////        System.out.println(AppService.hasTheAccountOfType("user@mail.com", "USD"));
+//
+////        System.out.println("Try addMoneyToAccount()");
+////        System.out.println(AppService.addMoneyToAccount("user@mail.com", "CZK", 1));
+//
+////        System.out.println("Try withdrawMoneyFromAccount()");
+////        System.out.println(AppService.withdrawMoneyFromAccount("admin@mail.com", "USD", 11));
+//
+////        System.out.println("Try closeMoneyAccount()");
+////        System.out.println(AppService.closeMoneyAccount("admin@mail.com", "USD"));
+//
+////        getAccountsFromJSON("user@mail.com");
+//
+////        AccountRepository.findAccountsByUserEmail("user@mail.com");
+//
+//        System.out.println(getContentOfJSON());
+//    }
 }

@@ -3,9 +3,12 @@ package backend.bankwebapp.model;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Repository;
 
 import java.io.FileReader;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +25,12 @@ public class AccountRepository {
         List<Account> accountsList = new ArrayList<>();
 
         try {
-            FileReader reader = new FileReader("src/main/resources/log.json"); // TARGET root
+//            FileWriter fileWriter = new FileWriter(resource.getFile().getPath());
+//            FileReader reader = new FileReader("src/main/resources/log.json"); // TARGET root
+            // must use relative path to run app .jar, not absolute
+            // and use encoding UTF_8 for sure to handle czech chars
+            ClassPathResource resource = new ClassPathResource("log.json");
+            InputStreamReader reader = new InputStreamReader(resource.getInputStream(), StandardCharsets.UTF_8);
             JSONParser parser = new JSONParser();
             JSONObject logObject = (JSONObject) parser.parse(reader);
             // Get the users array from the log object

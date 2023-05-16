@@ -2,12 +2,12 @@ package backend.bankwebapp.service;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
+import org.springframework.util.FileCopyUtils;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -25,7 +25,11 @@ public class TransactionService {
      */
     public static Boolean addTransactionToUserByEmail(String email, String accountType, String action, String finances) throws IOException {
         // Read the contents of the log.json file into a string
-        String contents = new String(Files.readAllBytes(Paths.get("src/main/resources/transactions.json")));
+        // need relative path, not absolute for .jar and run app
+//        String contents = new String(Files.readAllBytes(Paths.get("src/main/resources/transactions.json")));
+        ClassPathResource getResource = new ClassPathResource("transactions.json");
+        byte[] fileBytes = FileCopyUtils.copyToByteArray(getResource.getInputStream());
+        String contents = new String(fileBytes);
         // Parse the contents into a JSONObject, for File Write
         JSONObject json = new JSONObject(contents);
         // Get the "users" array
@@ -44,7 +48,10 @@ public class TransactionService {
                 transactions.put(timeStamp + "|" + accountType + "|" + action + "|" + finances); // add data
 
                 // Write the modified JSON back to the file
-                FileWriter file = new FileWriter("src/main/resources/transactions.json");
+                // need relative path not absolute
+                ClassPathResource resource = new ClassPathResource("transactions.json");
+                FileWriter file = new FileWriter(resource.getFile().getPath());
+//                FileWriter file = new FileWriter("src/main/resources/transactions.json");
                 file.write(json.toString());
                 file.flush();
                 file.close();

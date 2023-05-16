@@ -2,7 +2,9 @@ package backend.bankwebapp.service;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
+import org.springframework.util.FileCopyUtils;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -23,7 +25,11 @@ public class VerificationService {
      */
     public Boolean addVerificationCodeToUserByEmail(String email, String code) throws IOException {
         // Read the contents of the log.json file into a string
-        String contents = new String(Files.readAllBytes(Paths.get("src/main/resources/verification.json")));
+        // need relative path, not absolute for .jar and run app
+//        String contents = new String(Files.readAllBytes(Paths.get("src/main/resources/verification.json")));
+        ClassPathResource getResource = new ClassPathResource("verification.json");
+        byte[] fileBytes = FileCopyUtils.copyToByteArray(getResource.getInputStream());
+        String contents = new String(fileBytes);
         // Parse the contents into a JSONObject, for File Write
         JSONObject json = new JSONObject(contents);
         // Get the "users" array
@@ -36,7 +42,9 @@ public class VerificationService {
                 user.put("verificationCode", code);
 
                 // Write the modified JSON back to the file
-                FileWriter file = new FileWriter("src/main/resources/verification.json");
+//                FileWriter file = new FileWriter("src/main/resources/verification.json");
+                ClassPathResource resource = new ClassPathResource("verification.json");
+                FileWriter file = new FileWriter(resource.getFile().getPath());
                 file.write(json.toString());
                 file.flush();
                 file.close();
@@ -47,7 +55,11 @@ public class VerificationService {
     }
 
     public Boolean deleteVerificationCodeToUserByEmail(String email) throws IOException {
-        String contents = new String(Files.readAllBytes(Paths.get("src/main/resources/verification.json")));
+//        String contents = new String(Files.readAllBytes(Paths.get("src/main/resources/verification.json")));
+        ClassPathResource getResource = new ClassPathResource("verification.json");
+        byte[] fileBytes = FileCopyUtils.copyToByteArray(getResource.getInputStream());
+        String contents = new String(fileBytes);
+
         JSONObject json = new JSONObject(contents);
         JSONArray users = json.getJSONArray("users");
 
@@ -57,7 +69,9 @@ public class VerificationService {
                 user.put("verificationCode", "");
 
                 // Write the modified JSON back to the file
-                FileWriter file = new FileWriter("src/main/resources/verification.json");
+//                FileWriter file = new FileWriter("src/main/resources/verification.json");
+                ClassPathResource resource = new ClassPathResource("verification.json");
+                FileWriter file = new FileWriter(resource.getFile().getPath());
                 file.write(json.toString());
                 file.flush();
                 file.close();
@@ -81,8 +95,12 @@ public class VerificationService {
      */
     public Boolean isCodeValid(String email, String code) throws IOException {
         // Load user data from the JSON file
-        String jsonString = new String(Files.readAllBytes(Paths.get("src/main/resources/verification.json")));
-        JSONObject userData = new JSONObject(jsonString);
+//        String jsonString = new String(Files.readAllBytes(Paths.get("src/main/resources/verification.json")));
+        ClassPathResource getResource = new ClassPathResource("verification.json");
+        byte[] fileBytes = FileCopyUtils.copyToByteArray(getResource.getInputStream());
+        String contents = new String(fileBytes);
+
+        JSONObject userData = new JSONObject(contents);
         JSONArray users = userData.getJSONArray("users");
 
         // Search for the user with the specified email address
@@ -109,7 +127,11 @@ public class VerificationService {
      */
     public Boolean setValidVerificationStatusOfUser(String email, String status) throws IOException {
         // Read the contents of the log.json file into a string
-        String contents = new String(Files.readAllBytes(Paths.get("src/main/resources/verification.json")));
+//        String contents = new String(Files.readAllBytes(Paths.get("src/main/resources/verification.json")));
+        ClassPathResource getResource = new ClassPathResource("verification.json");
+        byte[] fileBytes = FileCopyUtils.copyToByteArray(getResource.getInputStream());
+        String contents = new String(fileBytes);
+
         // Parse the contents into a JSONObject, for File Write
         JSONObject json = new JSONObject(contents);
         // Get the "users" array
@@ -122,7 +144,9 @@ public class VerificationService {
                 user.put("isActive", status);
 
                 // Write the modified JSON back to the file
-                FileWriter file = new FileWriter("src/main/resources/verification.json");
+//                FileWriter file = new FileWriter("src/main/resources/verification.json");
+                ClassPathResource resource = new ClassPathResource("verification.json");
+                FileWriter file = new FileWriter(resource.getFile().getPath());
                 file.write(json.toString());
                 file.flush();
                 file.close();
@@ -141,8 +165,12 @@ public class VerificationService {
      */
     public Boolean isUserVerified(String email) throws IOException {
         // Load user data from the JSON file
-        String jsonString = new String(Files.readAllBytes(Paths.get("src/main/resources/verification.json")));
-        JSONObject userData = new JSONObject(jsonString);
+//        String jsonString = new String(Files.readAllBytes(Paths.get("src/main/resources/verification.json")));
+        ClassPathResource getResource = new ClassPathResource("verification.json");
+        byte[] fileBytes = FileCopyUtils.copyToByteArray(getResource.getInputStream());
+        String contents = new String(fileBytes);
+
+        JSONObject userData = new JSONObject(contents);
         JSONArray users = userData.getJSONArray("users");
 
         // Search for the user with the specified email address

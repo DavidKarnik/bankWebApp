@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import backend.bankwebapp.model.ExchangeRateRepository;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -34,10 +35,13 @@ public class ExchangeRateService {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             String timestamp = now.format(formatter);
             // Write the htmlContent to a file
-            FileWriter writer = new FileWriter("src/main/resources/exchangeRate.txt", false); // ,false for override whole file as new one
-            writer.write(timestamp + "\n");
-            writer.write(htmlContent + "\n");
-            writer.close();
+            // ,false for override whole file as new one
+//            FileWriter writer = new FileWriter("src/main/resources/exchangeRate.txt", false);
+            ClassPathResource resource = new ClassPathResource("exchangeRate.json");
+            FileWriter file = new FileWriter(resource.getFile().getPath(),false);
+            file.write(timestamp + "\n");
+            file.write(htmlContent + "\n");
+            file.close();
             return true;
         } catch (IOException e) {
             // Handle the exception
