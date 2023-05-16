@@ -2,6 +2,7 @@ package backend.bankwebapp.model;
 
 
 //import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
@@ -23,14 +24,16 @@ public class UserRepository {
 
 //    File file = new File("log.json");
 
+    static String filePath = "../log.json"; // ec2 aws actual absolute path
+
     public static List<User> findAll() {
         List<User> users = new ArrayList<>();
 
         try {
             // Read the log.json file using JSON parser
 //            FileReader reader = new FileReader("src/main/resources/log.json");
-            ClassPathResource resource = new ClassPathResource("log.json");
-            InputStreamReader reader = new InputStreamReader(resource.getInputStream(), StandardCharsets.UTF_8);
+//            ClassPathResource resource = new ClassPathResource(filePath);
+            InputStreamReader reader = new InputStreamReader(new FileInputStream(filePath), StandardCharsets.UTF_8);
 
             JSONParser parser = new JSONParser();
             JSONObject logObject = (JSONObject) parser.parse(reader);
@@ -71,8 +74,8 @@ public class UserRepository {
 //            System.out.println(UserRepository.class.getProtectionDomain().getCodeSource().getLocation().getPath());
             // Read the log.json file using JSON parser
 //            FileReader reader = new FileReader("src/main/resources/log.json"); // TARGET root
-            ClassPathResource resource = new ClassPathResource("log.json");
-            InputStreamReader reader = new InputStreamReader(resource.getInputStream(), StandardCharsets.UTF_8);
+//            ClassPathResource resource = new ClassPathResource(filePath);
+            InputStreamReader reader = new InputStreamReader(new FileInputStream(filePath), StandardCharsets.UTF_8);
 
             JSONParser parser = new JSONParser();
             JSONObject logObject = (JSONObject) parser.parse(reader);

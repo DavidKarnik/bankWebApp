@@ -6,6 +6,7 @@ import org.json.simple.parser.JSONParser;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Repository;
 
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
@@ -15,6 +16,8 @@ import java.util.List;
 @Repository
 public class AccountRepository {
 // Class with methods just for find info and data
+
+    static String filePath = "../log.json"; // ec2 aws actual absolute path
 
     /**
      *
@@ -29,8 +32,8 @@ public class AccountRepository {
 //            FileReader reader = new FileReader("src/main/resources/log.json"); // TARGET root
             // must use relative path to run app .jar, not absolute
             // and use encoding UTF_8 for sure to handle czech chars
-            ClassPathResource resource = new ClassPathResource("log.json");
-            InputStreamReader reader = new InputStreamReader(resource.getInputStream(), StandardCharsets.UTF_8);
+//            ClassPathResource resource = new ClassPathResource(filePath);
+            InputStreamReader reader = new InputStreamReader(new FileInputStream(filePath), StandardCharsets.UTF_8);
             JSONParser parser = new JSONParser();
             JSONObject logObject = (JSONObject) parser.parse(reader);
             // Get the users array from the log object

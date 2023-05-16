@@ -10,6 +10,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Repository;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -18,6 +19,8 @@ import java.util.List;
 @Repository
 public class ExchangeRateRepository {
 // Class with methods just for find info and data
+
+    static String filePath = "../exchangeRate.txt"; // ec2 aws actual absolute path
 
     /**
      * @return - List<ExchangeRate> getListOfExchangeRates
@@ -50,8 +53,8 @@ public class ExchangeRateRepository {
 
         try {
             // absolute path will not work in .jar file, because it works only for IDE environment, so use relative like that
-            ClassPathResource resource = new ClassPathResource("exchangeRate.txt");
-            BufferedReader reader = new BufferedReader(new InputStreamReader(resource.getInputStream()));
+//            ClassPathResource resource = new ClassPathResource(filePath);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(filePath)));
 
             String line;
             while ((line = reader.readLine()) != null) {

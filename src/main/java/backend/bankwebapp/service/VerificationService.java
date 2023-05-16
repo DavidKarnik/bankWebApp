@@ -6,6 +6,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -14,6 +15,8 @@ import java.util.UUID;
 
 @Service
 public class VerificationService {
+
+    String filePath = "../verification.json"; // ec2 aws actual absolute path
 
     /**
      * Store Verification Code To User by given email to json file
@@ -27,8 +30,8 @@ public class VerificationService {
         // Read the contents of the log.json file into a string
         // need relative path, not absolute for .jar and run app
 //        String contents = new String(Files.readAllBytes(Paths.get("src/main/resources/verification.json")));
-        ClassPathResource getResource = new ClassPathResource("verification.json");
-        byte[] fileBytes = FileCopyUtils.copyToByteArray(getResource.getInputStream());
+//        ClassPathResource getResource = new ClassPathResource(filePath);
+        byte[] fileBytes = FileCopyUtils.copyToByteArray(new File(filePath));
         String contents = new String(fileBytes);
         // Parse the contents into a JSONObject, for File Write
         JSONObject json = new JSONObject(contents);
@@ -43,8 +46,8 @@ public class VerificationService {
 
                 // Write the modified JSON back to the file
 //                FileWriter file = new FileWriter("src/main/resources/verification.json");
-                ClassPathResource resource = new ClassPathResource("verification.json");
-                FileWriter file = new FileWriter(resource.getFile().getPath());
+//                ClassPathResource resource = new ClassPathResource(filePath);
+                FileWriter file = new FileWriter(filePath);
                 file.write(json.toString());
                 file.flush();
                 file.close();
@@ -56,8 +59,8 @@ public class VerificationService {
 
     public Boolean deleteVerificationCodeToUserByEmail(String email) throws IOException {
 //        String contents = new String(Files.readAllBytes(Paths.get("src/main/resources/verification.json")));
-        ClassPathResource getResource = new ClassPathResource("verification.json");
-        byte[] fileBytes = FileCopyUtils.copyToByteArray(getResource.getInputStream());
+//        ClassPathResource getResource = new ClassPathResource(filePath);
+        byte[] fileBytes = FileCopyUtils.copyToByteArray(new File(filePath));
         String contents = new String(fileBytes);
 
         JSONObject json = new JSONObject(contents);
@@ -70,8 +73,8 @@ public class VerificationService {
 
                 // Write the modified JSON back to the file
 //                FileWriter file = new FileWriter("src/main/resources/verification.json");
-                ClassPathResource resource = new ClassPathResource("verification.json");
-                FileWriter file = new FileWriter(resource.getFile().getPath());
+//                ClassPathResource resource = new ClassPathResource(filePath);
+                FileWriter file = new FileWriter(filePath);
                 file.write(json.toString());
                 file.flush();
                 file.close();
@@ -96,8 +99,8 @@ public class VerificationService {
     public Boolean isCodeValid(String email, String code) throws IOException {
         // Load user data from the JSON file
 //        String jsonString = new String(Files.readAllBytes(Paths.get("src/main/resources/verification.json")));
-        ClassPathResource getResource = new ClassPathResource("verification.json");
-        byte[] fileBytes = FileCopyUtils.copyToByteArray(getResource.getInputStream());
+//        ClassPathResource getResource = new ClassPathResource(filePath);
+        byte[] fileBytes = FileCopyUtils.copyToByteArray(new File(filePath));
         String contents = new String(fileBytes);
 
         JSONObject userData = new JSONObject(contents);
@@ -128,8 +131,8 @@ public class VerificationService {
     public Boolean setValidVerificationStatusOfUser(String email, String status) throws IOException {
         // Read the contents of the log.json file into a string
 //        String contents = new String(Files.readAllBytes(Paths.get("src/main/resources/verification.json")));
-        ClassPathResource getResource = new ClassPathResource("verification.json");
-        byte[] fileBytes = FileCopyUtils.copyToByteArray(getResource.getInputStream());
+//        ClassPathResource getResource = new ClassPathResource(filePath);
+        byte[] fileBytes = FileCopyUtils.copyToByteArray(new File(filePath));
         String contents = new String(fileBytes);
 
         // Parse the contents into a JSONObject, for File Write
@@ -145,8 +148,8 @@ public class VerificationService {
 
                 // Write the modified JSON back to the file
 //                FileWriter file = new FileWriter("src/main/resources/verification.json");
-                ClassPathResource resource = new ClassPathResource("verification.json");
-                FileWriter file = new FileWriter(resource.getFile().getPath());
+//                ClassPathResource resource = new ClassPathResource(filePath);
+                FileWriter file = new FileWriter(filePath);
                 file.write(json.toString());
                 file.flush();
                 file.close();
@@ -166,8 +169,8 @@ public class VerificationService {
     public Boolean isUserVerified(String email) throws IOException {
         // Load user data from the JSON file
 //        String jsonString = new String(Files.readAllBytes(Paths.get("src/main/resources/verification.json")));
-        ClassPathResource getResource = new ClassPathResource("verification.json");
-        byte[] fileBytes = FileCopyUtils.copyToByteArray(getResource.getInputStream());
+//        ClassPathResource getResource = new ClassPathResource(filePath);
+        byte[] fileBytes = FileCopyUtils.copyToByteArray(new File(filePath));
         String contents = new String(fileBytes);
 
         JSONObject userData = new JSONObject(contents);

@@ -6,7 +6,7 @@ import org.assertj.core.api.Assertions;
 import org.json.JSONException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.core.io.ClassPathResource;
+//import org.springframework.core.io.ClassPathResource;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -71,8 +71,8 @@ public class TransactionServiceTest {
 
     private JsonObject getJsonObjectFromTransactionsFile() throws IOException, JSONException {
 //        FileReader reader = new FileReader("src/main/resources/transactions.json");
-        ClassPathResource resource = new ClassPathResource("transactions.json");
-        FileReader reader = new FileReader(resource.getFile().getPath());
+//        ClassPathResource resource = new ClassPathResource("transactions.json");
+        FileReader reader = new FileReader("../transactions.json");
         StringBuilder stringBuilder = new StringBuilder();
         int character;
         while ((character = reader.read()) != -1) {

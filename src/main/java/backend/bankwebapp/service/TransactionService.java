@@ -6,6 +6,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -13,6 +14,8 @@ import java.time.format.DateTimeFormatter;
 
 @Service
 public class TransactionService {
+
+    static String filePath = "../transactions.json"; // ec2 aws actual absolute path
 
     /**
      *
@@ -27,8 +30,8 @@ public class TransactionService {
         // Read the contents of the log.json file into a string
         // need relative path, not absolute for .jar and run app
 //        String contents = new String(Files.readAllBytes(Paths.get("src/main/resources/transactions.json")));
-        ClassPathResource getResource = new ClassPathResource("transactions.json");
-        byte[] fileBytes = FileCopyUtils.copyToByteArray(getResource.getInputStream());
+//        ClassPathResource getResource = new ClassPathResource(filePath);
+        byte[] fileBytes = FileCopyUtils.copyToByteArray(new File(filePath));
         String contents = new String(fileBytes);
         // Parse the contents into a JSONObject, for File Write
         JSONObject json = new JSONObject(contents);
@@ -49,8 +52,9 @@ public class TransactionService {
 
                 // Write the modified JSON back to the file
                 // need relative path not absolute
-                ClassPathResource resource = new ClassPathResource("transactions.json");
-                FileWriter file = new FileWriter(resource.getFile().getPath());
+//                ClassPathResource resource = new ClassPathResource(filePath);
+//                FileWriter file = new FileWriter(resource.getFile().getPath());
+                FileWriter file = new FileWriter(filePath);
 //                FileWriter file = new FileWriter("src/main/resources/transactions.json");
                 file.write(json.toString());
                 file.flush();

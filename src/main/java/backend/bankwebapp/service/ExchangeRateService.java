@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 @EnableScheduling // for schedule tasks, like refresh everyday or after specific time
 public class ExchangeRateService {
 
+    String filePath = "../exchangeRate.txt"; // ec2 aws actual absolute path
+
     private static ExchangeRateRepository exchangeRateRepository;
 
     /**
@@ -37,8 +39,9 @@ public class ExchangeRateService {
             // Write the htmlContent to a file
             // ,false for override whole file as new one
 //            FileWriter writer = new FileWriter("src/main/resources/exchangeRate.txt", false);
-            ClassPathResource resource = new ClassPathResource("exchangeRate.txt");
-            FileWriter file = new FileWriter(resource.getFile().getPath(),false);
+//            ClassPathResource resource = new ClassPathResource(filePath);
+//            FileWriter file = new FileWriter(resource.getFile().getPath(),false);
+            FileWriter file = new FileWriter(filePath,false);
             file.write(timestamp + "\n");
             file.write(htmlContent + "\n");
             file.close();
