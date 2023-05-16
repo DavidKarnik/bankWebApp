@@ -36,7 +36,7 @@ class ExchangeRateRepositoryTest {
         assertThat(exchangeRates.get(0).getAmount()).isEqualTo("1");
 //        assertThat(exchangeRates.get(0).getExchangeRate()).isEqualTo("14,228");
 
-        assertThat(exchangeRates.get(1).getCountry()).isEqualTo("Brazílie", StandardCharsets.UTF_8);
+        assertThat(exchangeRates.get(1).getCountry()).isEqualTo("Braz\u00EDlie", StandardCharsets.UTF_8);
         assertThat(exchangeRates.get(1).getCurrency()).isEqualTo("real");
         assertThat(exchangeRates.get(1).getAmount()).isEqualTo("1");
     }
