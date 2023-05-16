@@ -21,7 +21,7 @@ public class AppService {
 //    static String filePath = "/home/ec2-user/log.json"; // ec2 aws actual absolute path
 //    static String filePath = Paths.get("").toAbsolutePath() + "\\..\\try.json";
 //        System.out.println(filePath);
-    static String filePath = "../log.json"; // ec2 aws actual absolute path
+    static String filePath = "../data/log.json"; // ec2 aws actual absolute path
 
     /**
      * Verify that account has/has not money account of given type

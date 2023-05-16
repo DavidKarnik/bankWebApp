@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 @EnableScheduling // for schedule tasks, like refresh everyday or after specific time
 public class ExchangeRateService {
 
-    String filePath = "../exchangeRate.txt"; // ec2 aws actual absolute path
+    String filePath = "../data/exchangeRate.txt"; // ec2 aws actual absolute path
 
     private static ExchangeRateRepository exchangeRateRepository;
 

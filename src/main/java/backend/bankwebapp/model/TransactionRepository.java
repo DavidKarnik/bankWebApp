@@ -17,7 +17,7 @@ import java.util.List;
 public class TransactionRepository {
 // Class with methods just for find info and data
 
-    static String filePath = "../transactions.json"; // ec2 aws actual absolute path
+    static String filePath = "../data/transactions.json"; // ec2 aws actual absolute path
 
     /**
      * Get List of Transactions by Users email

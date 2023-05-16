@@ -17,7 +17,7 @@ import java.util.List;
 public class AccountRepository {
 // Class with methods just for find info and data
 
-    static String filePath = "../log.json"; // ec2 aws actual absolute path
+    static String filePath = "../data/log.json"; // ec2 aws actual absolute path
 
     /**
      *

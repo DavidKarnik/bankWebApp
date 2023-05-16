@@ -20,7 +20,7 @@ import java.util.List;
 public class ExchangeRateRepository {
 // Class with methods just for find info and data
 
-    static String filePath = "../exchangeRate.txt"; // ec2 aws actual absolute path
+    static String filePath = "../data/exchangeRate.txt"; // ec2 aws actual absolute path
 
     /**
      * @return - List<ExchangeRate> getListOfExchangeRates

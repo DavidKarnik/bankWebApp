@@ -15,7 +15,7 @@ import java.time.format.DateTimeFormatter;
 @Service
 public class TransactionService {
 
-    static String filePath = "../transactions.json"; // ec2 aws actual absolute path
+    static String filePath = "../data/transactions.json"; // ec2 aws actual absolute path
 
     /**
      *

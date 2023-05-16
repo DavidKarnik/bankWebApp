@@ -24,7 +24,7 @@ public class UserRepository {
 
 //    File file = new File("log.json");
 
-    static String filePath = "../log.json"; // ec2 aws actual absolute path
+    static String filePath = "../data/log.json"; // ec2 aws actual absolute path
 
     public static List<User> findAll() {
         List<User> users = new ArrayList<>();

@@ -16,7 +16,7 @@ import java.util.UUID;
 @Service
 public class VerificationService {
 
-    String filePath = "../verification.json"; // ec2 aws actual absolute path
+    String filePath = "../data/verification.json"; // ec2 aws actual absolute path
 
     /**
      * Store Verification Code To User by given email to json file
