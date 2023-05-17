@@ -18,6 +18,9 @@ jobs:
     runs-on: self-hosted
 
     steps:
+    - name: Change all permissions
+      run: |
+          sudo chmod -R 777 /home/ubuntu/actions-runner/_work/bankWebApp/bankWebApp/bankWebApp
     - name: Check Existing Process on Port 8080
       id: checkProcess1
       run: |
