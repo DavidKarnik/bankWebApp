@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 
 import backend.bankwebapp.model.ExchangeRateRepository;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,8 @@ import org.springframework.stereotype.Service;
 @EnableScheduling // for schedule tasks, like refresh everyday or after specific time
 public class ExchangeRateService {
 
-    String filePath = "../data/exchangeRate.txt"; // ec2 aws actual absolute path
+//    @Value("${file.path.exchangeRate.txt}")
+    String filePath = "data/exchangeRate.txt"; // ec2 aws actual absolute path
 
     private static ExchangeRateRepository exchangeRateRepository;
 

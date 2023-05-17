@@ -11,6 +11,7 @@ import java.util.List;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Repository;
 
@@ -24,7 +25,8 @@ public class UserRepository {
 
 //    File file = new File("log.json");
 
-    static String filePath = "../data/log.json"; // ec2 aws actual absolute path
+//    @Value("${file.path.log.json}")
+    static String filePath = "data/log.json"; // ec2 aws actual absolute path
 
     public static List<User> findAll() {
         List<User> users = new ArrayList<>();

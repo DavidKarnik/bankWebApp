@@ -6,6 +6,8 @@ import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
 import org.apache.hc.client5.http.impl.classic.HttpClients;
 import org.apache.hc.core5.http.ParseException;
 import org.apache.hc.core5.http.io.entity.EntityUtils;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Repository;
 
@@ -18,10 +20,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
+//@PropertySource("classpath:application.properties")
 public class ExchangeRateRepository {
 // Class with methods just for find info and data
 
-    static String filePath = "../data/exchangeRate.txt"; // ec2 aws actual absolute path
+//    @Value("${file.path.exchangeRate.txt}")
+    static String filePath = "data/exchangeRate.txt"; // ec2 aws actual absolute path
 
     /**
      * @return - List<ExchangeRate> getListOfExchangeRates
@@ -159,22 +163,24 @@ public class ExchangeRateRepository {
     }
 
     //    Testing
-//    public static void main(String[] args) {
-//        // Press Alt+Enter with your caret at the highlighted text to see how
-//        // IntelliJ IDEA suggests fixing it.
-//        System.out.printf("Hello and welcome!\n");
-//        System.out.println("-------------------\n");
-//
-////        String htmlContent = getHtmlContent("https://www.cnb.cz/cs/financni-trhy/devizovy-trh/kurzy-devizoveho-trhu/kurzy-devizoveho-trhu/denni_kurz.txt");
-////        System.out.println(htmlContent);
-//
-////        char verticalLine = '\u007c'; // '|'
-////        System.out.println(String.valueOf(verticalLine));
-//
-////        printArray(getExchangeRateStringArray());
-//
-////        System.out.println(getRefreshedTimeOfRates());
-//
+    public static void main(String[] args) {
+        // Press Alt+Enter with your caret at the highlighted text to see how
+        // IntelliJ IDEA suggests fixing it.
+        System.out.printf("Hello and welcome!\n");
+        System.out.println("-------------------\n");
+
+//        String htmlContent = getHtmlContent("https://www.cnb.cz/cs/financni-trhy/devizovy-trh/kurzy-devizoveho-trhu/kurzy-devizoveho-trhu/denni_kurz.txt");
+//        System.out.println(htmlContent);
+
+//        char verticalLine = '\u007c'; // '|'
+//        System.out.println(String.valueOf(verticalLine));
+
+//        printArray(getExchangeRateStringArray());
+
+//        System.out.println(getRefreshedTimeOfRates());
+
 //        System.out.println(readExchangeRateFile());
-//    }
+
+        System.out.println(filePath);
+    }
 }

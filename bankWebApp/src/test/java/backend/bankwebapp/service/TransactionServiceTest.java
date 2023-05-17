@@ -72,7 +72,7 @@ public class TransactionServiceTest {
     private JsonObject getJsonObjectFromTransactionsFile() throws IOException, JSONException {
 //        FileReader reader = new FileReader("src/main/resources/transactions.json");
 //        ClassPathResource resource = new ClassPathResource("transactions.json");
-        FileReader reader = new FileReader("../data/transactions.json");
+        FileReader reader = new FileReader("data/transactions.json");
         StringBuilder stringBuilder = new StringBuilder();
         int character;
         while ((character = reader.read()) != -1) {

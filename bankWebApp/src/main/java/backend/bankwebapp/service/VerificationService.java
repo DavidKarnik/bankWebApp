@@ -2,7 +2,7 @@ package backend.bankwebapp.service;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 
@@ -16,7 +16,8 @@ import java.util.UUID;
 @Service
 public class VerificationService {
 
-    String filePath = "../data/verification.json"; // ec2 aws actual absolute path
+//    @Value("${file.path.verification.json}")
+    String filePath = "data/verification.json"; // ec2 aws actual absolute path
 
     /**
      * Store Verification Code To User by given email to json file

@@ -1,5 +1,6 @@
 package backend.bankwebapp.service;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +22,9 @@ public class AppService {
 //    static String filePath = "/home/ec2-user/log.json"; // ec2 aws actual absolute path
 //    static String filePath = Paths.get("").toAbsolutePath() + "\\..\\try.json";
 //        System.out.println(filePath);
-    static String filePath = "../data/log.json"; // ec2 aws actual absolute path
+
+//    @Value("${file.path.log.json}")
+    static String filePath = "data/log.json"; // ec2 aws actual absolute path
 
     /**
      * Verify that account has/has not money account of given type

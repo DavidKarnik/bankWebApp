@@ -148,7 +148,11 @@
 			<scope>provided</scope>
 		</dependency>
 
-
+		<dependency>
+			<groupId>org.jacoco</groupId>
+			<artifactId>jacoco-maven-plugin</artifactId>
+			<version>0.8.10</version>
+		</dependency>
 
 	</dependencies>
 
@@ -175,6 +179,42 @@
 				<configuration>
 					<encoding>UTF-8</encoding>
 				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.10</version>
+				<configuration>
+					<excludes>
+						<exclude>backend/bankwebapp/model/Account.java</exclude>
+						<exclude>backend/bankwebapp/model/ExchangeRate.java</exclude>
+						<exclude>backend/bankwebapp/model/Transaction.java</exclude>
+						<exclude>backend/bankwebapp/model/User.java</exclude>
+
+						<exclude>backend/bankwebapp/security/*</exclude>
+<!--						<exclude>backend/bankwebapp/security/PasswordEncoder.java</exclude>-->
+<!--						<exclude>backend/bankwebapp/security/CustomUserDetails.java</exclude>-->
+<!--						<exclude>backend/bankwebapp/security/CustomUserDetailsService.java</exclude>-->
+<!--						<exclude>backend/bankwebapp/security/CustomSuccessHandler.java</exclude>-->
+
+						<exclude>backend/bankwebapp/BankWebAppApplication.java</exclude>
+					</excludes>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

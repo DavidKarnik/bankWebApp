@@ -2,6 +2,7 @@ package backend.bankwebapp.service;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
@@ -15,7 +16,8 @@ import java.time.format.DateTimeFormatter;
 @Service
 public class TransactionService {
 
-    static String filePath = "../data/transactions.json"; // ec2 aws actual absolute path
+//    @Value("${file.path.transactions.json}")
+    static String filePath = "data/transactions.json"; // ec2 aws actual absolute path
 
     /**
      *

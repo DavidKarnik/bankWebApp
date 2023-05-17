@@ -3,6 +3,7 @@ package backend.bankwebapp.model;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Repository;
 
@@ -17,7 +18,8 @@ import java.util.List;
 public class TransactionRepository {
 // Class with methods just for find info and data
 
-    static String filePath = "../data/transactions.json"; // ec2 aws actual absolute path
+//    @Value("${file.path.transactions.json}")
+    static String filePath = "data/transactions.json"; // ec2 aws actual absolute path
 
     /**
      * Get List of Transactions by Users email
