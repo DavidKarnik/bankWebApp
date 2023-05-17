@@ -32,7 +32,10 @@ jobs:
 #    - name: Execute Jar File
 #      run: sudo kill -9 'sudo lsof -t -i:8080' & sudo java -jar /home/ubuntu/actions-runner/_work/bankWebApp/bankWebApp/bankWebApp/target/bankWebApp-0.0.1-SNAPSHOT.jar &
     - name: Kill Existing Process
-      run: sudo kill -9 $(sudo lsof -t -i:8080)
+      run: |
+          echo "kill port 8080"
+          echo $(sudo lsof -t -i:8080)
+          sudo kill -9 'sudo lsof -t -i:8080'
     - name: Build Maven Jar
       run: |
           cd /home/ubuntu/actions-runner/_work/bankWebApp/bankWebApp/bankWebApp
