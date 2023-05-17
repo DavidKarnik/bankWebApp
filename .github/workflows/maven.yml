@@ -37,7 +37,7 @@ jobs:
           sudo lsof -i :8080 | awk 'NR==2{print $2}' || echo "No process found"
     - name: Kill Existing Process
       run: |
-          if [ "${{ steps.checkProcess.outputs.stdout }}" != "No process found" ]; then
+          if [ "${{ steps.checkProcess.outputs.stdout }}" != "" ]; then
             sudo kill -9 ${{ steps.checkProcess.outputs.stdout }}
           fi
     - name: Build Maven Jar
