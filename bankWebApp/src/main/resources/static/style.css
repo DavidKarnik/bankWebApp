@@ -1,0 +1,28 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #003366;
+    color: #ffffff;
+    padding: 20px;
+}
+body {
+    margin: 0;
+}
+.bank-name {
+    font-size: 36px;
+    margin: 0;
+}
+
+.logoutSection {
+    text-align: right;
+}
+
+.logoutSection input[type="submit"] {
+    background-color: #ffffff;
+    color: #003366;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+}
