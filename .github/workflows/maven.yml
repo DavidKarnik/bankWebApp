@@ -15,7 +15,7 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
     - uses: actions/checkout@v3
@@ -29,8 +29,19 @@ jobs:
       run: mvn -B -Dfile.encoding=UTF-8 package --file bankWebApp/pom.xml
     - name: Run Spring tests
       run: mvn -Dfile.encoding=UTF-8 clean test --file bankWebApp/pom.xml
+
+    - name: Kill Existing Process
+  	run: sudo kill -9 $(sudo lsof -t -i:8080)
+
+    - name: Build Maven Jar
+  	run: |
+        cd /home/ubuntu/actions-runner/_work/bankWebApp/bankWebApp/bankWebApp
+        sudo mvn clean package
+
     - name: Execute Jar File
-      run: sudo kill -9 'sudo lsof -t -i:8080' & sudo java -jar /home/ubuntu/actions-runner/_work/bankWebApp/bankWebApp/bankWebApp/target/bankWebApp-0.0.1-SNAPSHOT.jar &
+      run: sudo java -jar /home/ubuntu/actions-runner/_work/bankWebApp/bankWebApp/bankWebApp/target/bankWebApp-0.0.1-SNAPSHOT.jar &
+
+
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
 #    - name: Update dependency graph
