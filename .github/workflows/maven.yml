@@ -31,11 +31,15 @@ jobs:
       run: mvn -Dfile.encoding=UTF-8 clean test --file bankWebApp/pom.xml
 #    - name: Execute Jar File
 #      run: sudo kill -9 'sudo lsof -t -i:8080' & sudo java -jar /home/ubuntu/actions-runner/_work/bankWebApp/bankWebApp/bankWebApp/target/bankWebApp-0.0.1-SNAPSHOT.jar &
+    - name: Check Existing Process on Port 8080
+      id: checkProcess
+      run: |
+          sudo lsof -i :8080 | awk 'NR==2{print $2}' || echo "No process found"
     - name: Kill Existing Process
       run: |
-          echo "kill port 8080"
-          echo $(sudo lsof -t -i:8080)
-          sudo kill -9 $(sudo lsof -t -i:8080)
+          if [ "${{ steps.checkProcess.outputs.stdout }}" != "No process found" ]; then
+            sudo kill -9 ${{ steps.checkProcess.outputs.stdout }}
+          fi
     - name: Build Maven Jar
       run: |
           cd /home/ubuntu/actions-runner/_work/bankWebApp/bankWebApp/bankWebApp
