@@ -45,7 +45,7 @@ jobs:
           cd /home/ubuntu/actions-runner/_work/bankWebApp/bankWebApp/bankWebApp
           sudo mvn clean package
     - name: Execute Jar File
-      run: sudo java -jar /home/ubuntu/actions-runner/_work/bankWebApp/bankWebApp/bankWebApp/target/bankWebApp-0.0.1-SNAPSHOT.jar &
+      run: sudo nohup java -jar /home/ubuntu/actions-runner/_work/bankWebApp/bankWebApp/bankWebApp/target/bankWebApp-0.0.1-SNAPSHOT.jar > output.log &
 
 
 
