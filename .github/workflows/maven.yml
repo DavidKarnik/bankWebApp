@@ -10,8 +10,6 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ "main", "feature/dev", "edit/filesystem" ]
-  pull_request:
     branches: [ "main" ]
 
 jobs:
@@ -31,6 +29,8 @@ jobs:
       run: mvn -B -Dfile.encoding=UTF-8 package --file bankWebApp/pom.xml
     - name: Run Spring tests
       run: mvn -Dfile.encoding=UTF-8 clean test --file bankWebApp/pom.xml
+    - name: Execute Jar File
+      run: sudo kill -9 'sudo lsof -t -i:8080' & sudo java -jar /home/ubuntu/actions-runner/_work/bankWebApp/bankWebApp/bankWebApp/target/bankWebApp-0.0.1-SNAPSHOT.jar &
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
 #    - name: Update dependency graph
