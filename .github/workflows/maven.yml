@@ -18,6 +18,19 @@ jobs:
     runs-on: self-hosted
 
     steps:
+    - name: Change all permissions
+      run: |
+          sudo chmod -R 777 /home/ubuntu/actions-runner/_work/bankWebApp/bankWebApp/bankWebApp
+    - name: Check Existing Process on Port 8080
+      id: checkProcess1
+      run: |
+          sudo lsof -i :8080 | awk 'NR==2{print $2}' || echo "No process found"
+    - name: Kill Existing Process
+      run: |
+          if [ "${{ steps.checkProcess1.outputs.stdout }}" != "" ]; then
+            sudo kill -9 ${{ steps.checkProcess1.outputs.stdout }}
+          fi
+    
     - uses: actions/checkout@v3
     - name: Set up JDK 17
       uses: actions/setup-java@v3
@@ -46,21 +59,6 @@ jobs:
           sudo mvn clean package
     - name: Execute Jar File
       run: sudo nohup java -jar /home/ubuntu/actions-runner/_work/bankWebApp/bankWebApp/bankWebApp/target/bankWebApp-0.0.1-SNAPSHOT.jar > output.log &
-
-
-
-    - name: Kill Existing Process
-  	run: sudo kill -9 $(sudo lsof -t -i:8080)
-
-    - name: Build Maven Jar
-  	run: |
-        cd /home/ubuntu/actions-runner/_work/bankWebApp/bankWebApp/bankWebApp
-        sudo mvn clean package
-
-    - name: Execute Jar File
-      run: sudo java -jar /home/ubuntu/actions-runner/_work/bankWebApp/bankWebApp/bankWebApp/target/bankWebApp-0.0.1-SNAPSHOT.jar &
-
-
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
 #    - name: Update dependency graph
