@@ -21,14 +21,11 @@ jobs:
     - name: Change all permissions
       run: |
           sudo chmod -R 777 /home/ubuntu/actions-runner/_work/bankWebApp/bankWebApp/bankWebApp
-    - name: Check Existing Process on Port 8080
-      id: checkProcess1
+    - name: Check Existing Process on Port 8080 and kill it
       run: |
-          sudo lsof -i :8080 | awk 'NR==2{print $2}' || echo "No process found"
-    - name: Kill Existing Process
-      run: |
-          if [ "${{ steps.checkProcess1.outputs.stdout }}" != "" ]; then
-            sudo kill -9 ${{ steps.checkProcess1.outputs.stdout }}
+          if [ "$(sudo lsof -t -i:8080)" != "" ]; then
+            sudo kill -9 $(sudo lsof -t -i:8080)
+            echo "Process running on port 8080 killed"
           fi
     
     - uses: actions/checkout@v3
@@ -42,23 +39,14 @@ jobs:
       run: mvn -B -Dfile.encoding=UTF-8 package --file bankWebApp/pom.xml
     - name: Run Spring tests
       run: mvn -Dfile.encoding=UTF-8 clean test --file bankWebApp/pom.xml
-#    - name: Execute Jar File
-#      run: sudo kill -9 'sudo lsof -t -i:8080' & sudo java -jar /home/ubuntu/actions-runner/_work/bankWebApp/bankWebApp/bankWebApp/target/bankWebApp-0.0.1-SNAPSHOT.jar &
-    - name: Check Existing Process on Port 8080
-      id: checkProcess
-      run: |
-          sudo lsof -i :8080 | awk 'NR==2{print $2}' || echo "No process found"
-    - name: Kill Existing Process
-      run: |
-          if [ "${{ steps.checkProcess.outputs.stdout }}" != "" ]; then
-            sudo kill -9 ${{ steps.checkProcess.outputs.stdout }}
-          fi
     - name: Build Maven Jar
       run: |
           cd /home/ubuntu/actions-runner/_work/bankWebApp/bankWebApp/bankWebApp
           sudo mvn clean package
     - name: Execute Jar File
-      run: sudo nohup java -jar /home/ubuntu/actions-runner/_work/bankWebApp/bankWebApp/bankWebApp/target/bankWebApp-0.0.1-SNAPSHOT.jar > output.log &
+      run: |
+          cd /home/ubuntu/actions-runner/_work/bankWebApp/bankWebApp/bankWebApp
+          sudo nohup java -jar /home/ubuntu/actions-runner/_work/bankWebApp/bankWebApp/bankWebApp/target/bankWebApp-0.0.1-SNAPSHOT.jar > output.log &
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
 #    - name: Update dependency graph

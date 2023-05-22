@@ -23,7 +23,7 @@ public class AppService {
 //    static String filePath = Paths.get("").toAbsolutePath() + "\\..\\try.json";
 //        System.out.println(filePath);
 
-//    @Value("${file.path.log.json}")
+    //    @Value("${file.path.log.json}")
     static String filePath = "data/log.json"; // ec2 aws actual absolute path
 
     /**
@@ -140,6 +140,7 @@ public class AppService {
 
         int state = 2;
         double newAmount = 0;
+        double fee = 0;
 
         // Find the user with the matching email
         for (int i = 0; i < users.length(); i++) {
@@ -158,17 +159,29 @@ public class AppService {
                     if (_type.equals(type)) {
                         // account of type found
                         double oldAmount = Double.parseDouble(accountParts[1]);
-                        // try
-                        if (oldAmount < amount) {
-                            // try czk account
+
+                        // 10% of amount from oldAmount -> below 0 is ok
+                        // 1000 - 1090 -> OK
+                        // and 10% fee from minus balance
+                        // 1000 - 1090 = -90 -> +10% -> -99
+                        // 1100 > 1090 -> OK
+                        if (oldAmount < 0 || (oldAmount + (oldAmount * 0.1)) <= amount) {
+                            // account of given type do not have enough finance
+                            // is it czk account
                             if (type.equalsIgnoreCase("CZK")) {
                                 return 0;
                             }
+                            // no ... try czk account (by default)
                             break;
+                        } else if (oldAmount < amount && (oldAmount + (oldAmount * 0.1)) > amount) {
+                            // going below 0 with 10% fee of negative balance
+                            fee = Math.abs(oldAmount - amount) * 0.1;
                         }
+
                         // OK state = 2;
+                        // Account has enough finance
                         // Update the amount of the matching account
-                        newAmount = oldAmount - amount;
+                        newAmount = oldAmount - amount - fee;
                         accounts.put(j, _type + ":" + newAmount);
                         // Write the modified JSON back to the log.json file
 //                        ClassPathResource resource = new ClassPathResource(filePath);
@@ -178,8 +191,8 @@ public class AppService {
                         file.flush();
                         file.close();
                         // Add Transaction info
-                        addTransactionToUserByEmail(email, type, "Payment", "-" + String.valueOf(amount));
-                        return state;
+                        addTransactionToUserByEmail(email, type, "Payment", "-" + String.valueOf(amount + fee));
+                        return state; // 2
                     }
                 }
 
@@ -196,14 +209,22 @@ public class AppService {
                     if (_type.equalsIgnoreCase("CZK")) {
                         // account of type found
                         double oldAmount = Double.parseDouble(accountParts[1]);
-                        // try
-                        if (oldAmount < realAmount) {
-                            return 0; // account czk has not enough finance
+
+                        if (oldAmount < 0 || (oldAmount + (oldAmount * 0.1)) <= realAmount) {
+                            // account czk has not enough finance
+                            return 0;
+                        } else if (oldAmount < realAmount && (oldAmount + (oldAmount * 0.1)) > realAmount) {
+                            // going below 0 with 10% fee of negative balance
+                            fee = Math.abs(oldAmount - realAmount) * 0.1;
                         }
+                        // try
+//                        if (oldAmount < realAmount) {
+//                            return 0; // account czk has not enough finance
+//                        }
                         // OK
                         state = 1;
                         // Update the amount of the matching account
-                        newAmount = oldAmount - realAmount;
+                        newAmount = oldAmount - realAmount - fee;
                         accounts.put(a, _type + ":" + newAmount);
                         // Write the modified JSON back to the log.json file
 //                        ClassPathResource resource = new ClassPathResource(filePath);
@@ -213,7 +234,7 @@ public class AppService {
                         file.flush();
                         file.close();
                         // Add Transaction info
-                        addTransactionToUserByEmail(email, "CZK", "Payment", "-" + String.valueOf(realAmount));
+                        addTransactionToUserByEmail(email, "CZK", "Payment", "-" + String.valueOf(realAmount + fee));
                         return state;
                     }
                 }
