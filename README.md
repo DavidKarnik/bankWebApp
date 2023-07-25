@@ -15,4 +15,7 @@ Actions - Deposit, Payment, Open account, Close account
 -> Login, Logout, Show history of transactions, Show real-time refreshed exchange rates
 
 Learned also how to get data from another website (cnb.cz - exchange rates for transaction) and set up refresh everyday at specific time.
+Learned how to use CI/CD pipeline with Github Actions.
 Made protocol DSP for this project.
+
+Test Coverage should be > 70 %
