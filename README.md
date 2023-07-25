@@ -1,2 +1,2 @@
 # bankWebApp
-Web Application with Spring Boot, Vue, JS, HTML, etc.
+Web Application with Spring Boot, JS, HTML, etc.
