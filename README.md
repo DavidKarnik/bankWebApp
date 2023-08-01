@@ -1,6 +1,6 @@
 # Bank Web Application
 
-Web Application with Spring Boot, JS, HTML, etc.
+Web Application with Spring Boot, JS, HTML, thymeLeaf etc.
 
 Uni semestr project. For learn development of web app, how frontend and backend communicate, how to secure web app and how to deploy and host app.
 
