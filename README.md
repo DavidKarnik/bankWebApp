@@ -19,3 +19,5 @@ Learned how to use CI/CD pipeline with Github Actions.
 Made protocol DSP for this project.
 
 Test Coverage should be > 70 %
+
+Coding time : 65 hours
