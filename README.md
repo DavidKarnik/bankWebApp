@@ -2,6 +2,8 @@
 
 Web Application with Spring Boot, JS, HTML, thymeLeaf etc.
 
+Date End: April 2023
+
 Uni semestr project. For learn development of web app, how frontend and backend communicate, how to secure web app and how to deploy and host app.
 
 Frontend via Webstorm IDE - JS, HTML, CSS
