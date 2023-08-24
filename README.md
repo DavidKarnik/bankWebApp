@@ -20,6 +20,9 @@ Learned also how to get data from another website (cnb.cz - exchange rates for t
 Learned how to use CI/CD pipeline with Github Actions.
 Made protocol DSP for this project.
 
+Tried DevOps - automation, CI/CD
+
 Test Coverage should be > 70 %
 
 Coding time : 65 hours
+Much more extra time in learning, reading, debbuging, finding solutions and exploring.
