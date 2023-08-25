@@ -11,7 +11,7 @@ Backend via Intellij IDE - Spring Boot Java
 Data stored in JSON files (no Database)
 Hosted on Amazon AWS - Ubuntu Linux server
 
-Secured with login (Email/Password) and 2-factor authentication via e-mail verification.
+Secured with login (Email/Password) and 2-factor authentication via e-mail verification. (Integrated Mail sender)
 
 Actions - Deposit, Payment, Open account, Close account
 -> Login, Logout, Show history of transactions, Show real-time refreshed exchange rates
