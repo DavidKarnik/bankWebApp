@@ -25,4 +25,4 @@ Tried DevOps - automation, CI/CD
 Test Coverage should be > 70 %
 
 Coding time : 65 hours
-Much more extra time in learning, reading, debbuging, finding solutions and exploring.
+ ..Much more extra time in learning, reading, debbuging, finding solutions and exploring.
