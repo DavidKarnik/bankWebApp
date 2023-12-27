@@ -6,10 +6,10 @@ Date End: April 2023
 
 Uni semestr project. For learn development of web app, how frontend and backend communicate, how to secure web app and how to deploy and host app.
 
-Frontend via Webstorm IDE - JS, HTML, CSS </br>
-Backend via Intellij IDE - Spring Boot Java </br>
-Data stored in JSON files (no Database) </br>
-Hosted on Amazon AWS - Ubuntu Linux server </br>
+**Frontend** via Webstorm IDE - JS, HTML, CSS </br>
+**Backend** via Intellij IDE - Spring Boot Java </br>
+**Data stored** in JSON files (no Database) </br>
+**Hosted on** Amazon AWS - Ubuntu Linux server </br>
 
 Secured with login (Email/Password) and 2-factor authentication via e-mail verification. (Integrated Mail sender)
 
