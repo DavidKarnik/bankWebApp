@@ -9,7 +9,7 @@ Uni semestr project. For learn development of web app, how frontend and backend 
 **Frontend** via Webstorm IDE - JS, HTML, CSS </br>
 **Backend** via Intellij IDE - Spring Boot Java </br>
 **Data stored** in JSON files (no Database) </br>
-**Hosted on** Amazon AWS - Ubuntu Linux server </br>
+**Hosted on** Amazon AWS EC2 - Ubuntu Linux server </br>
 **Tests with** SonarCloud and JaCoCo </br>
 
 Secured with login (Email/Password) and 2-factor authentication via e-mail verification. (Integrated Mail sender)
